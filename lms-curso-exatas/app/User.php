@@ -16,8 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'user_type',
     ];
+
+    const ADMIN = 'admin';
+    const PROFESSOR = 'professor';
+    const ALUNO = 'aluno';
+    const USER_TYPES = [self::ADMIN, self::PROFESSOR, self::ALUNO];
 
     /**
      * The attributes that should be hidden for arrays.
