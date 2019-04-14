@@ -22,7 +22,7 @@ class User extends Authenticatable
     const ADMIN = 'admin';
     const PROFESSOR = 'professor';
     const ALUNO = 'aluno';
-    const USER_TYPES = [self::ADMIN, self::PROFESSOR, self::ALUNO];
+    const ALLOWED_USER_TYPES = [self::PROFESSOR, self::ALUNO];
 
     /**
      * The attributes that should be hidden for arrays.
