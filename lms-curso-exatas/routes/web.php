@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('mailable', function () {
+    return new App\Mail\emailCadastro('zé','111','teste.com');
+});
