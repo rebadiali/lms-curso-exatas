@@ -13,11 +13,16 @@ class User extends Authenticatable
     /**
      * The attributes that are mass assignable.
      *
-     * @var array
+     * @var array 
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'user_type',
     ];
+
+    const ADMIN = 'admin';
+    const PROFESSOR = 'professor';
+    const ALUNO = 'aluno';
+    const ALLOWED_USER_TYPES = [self::PROFESSOR, self::ALUNO];
 
     /**
      * The attributes that should be hidden for arrays.
