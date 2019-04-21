@@ -25,3 +25,12 @@ Route::resource('course', 'CourseController',
         ],
     ]
 );
+
+Route::resource('user', 'UserController',
+    [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
