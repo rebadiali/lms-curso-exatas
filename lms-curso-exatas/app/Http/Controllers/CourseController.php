@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CourseController extends Controller
 {
@@ -35,6 +36,10 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        $validation = $this->validator($request->all());
+        if ($validation->fails()){
+            return response()->json($validation->errors(), 422);
+        }
         return Course::create($request->all());
     }
 
@@ -81,5 +86,18 @@ class CourseController extends Controller
     public function destroy(Course $course)
     {
         return $course->delete() ? "removido com sucesso" : "erro na remoção";
+    }
+
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
     }
 }
