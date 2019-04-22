@@ -13,6 +13,10 @@
             <label for="password">Senha:</label><br>
             <input id="password" type="password" v-model="password" required/>
             </div>
+            <div>
+            <label for="password_confirmation">Confirmação de Senha:</label><br>
+            <input id="password_confirmation" type="password" v-model="password_confirmation" required/>
+            </div>
             <button :class="[name ? activeClass : '']" type="submit">Registrar</button>
             <div>
             <h3>Response from server:</h3>
@@ -22,32 +26,38 @@
     </div>
 </template>
 <script>
-export default {
+  import axios from 'axios';
+
+  export default {
     name: 'registro',
     data() {
-        return {
-        name: '',
-        email: '',
-        password: '',
-        response: '',
-        user_type: '',
-        activeClass: 'active'
-        }
+      return {
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      response: '',
+      user_type: 'aluno',
+      activeClass: 'active'
+      }
     },
     methods: {
-        submitForm() {
-        axios.post('localhost/api/user', {
-            name: this.name,
-            email: this.email,
-            password: this.password
-        }).then(response => {
-            this.response = JSON.stringify(response, null, 2)
-        }).catch(error => {
-            this.response = 'Error: ' + error.response.status
-        })
-        }
+      submitForm() {
+      axios.defaults.baseURL ='http://localhost:8000'
+      axios.post('/api/user', {
+          name: this.name,
+          user_type: this.user_type,
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password_confirmation
+      }).then(response => {
+          this.response = JSON.stringify(response, null, 2)
+      }).catch(error => {
+          this.response = 'Error: ' + error.response.status
+      })
+      }
     }
-}
+  }
 </script>
 <style lang="scss">
 $primary: #5968d7;
