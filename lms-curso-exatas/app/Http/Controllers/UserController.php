@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
-class CourseController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return Course::all();
+        return User::all();
     }
 
     /**
@@ -40,27 +41,27 @@ class CourseController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return Course::create($request->all());
+        return User::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(User $user)
     {
-        return $course;
+        return $user;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(User $user)
     {
         //
     }
@@ -69,23 +70,23 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, User $user)
     {
-        return $course->update($request->all()) ? "atualizado com sucesso" : "erro na atualização";
+        return $user->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(User $user)
     {
-        return $course->delete() ? "removido com sucesso" : "erro na remoção";
+        return $user->delete() ? "Removido com sucesso" : "Erro na remoção";
     }
 
     /**
@@ -98,6 +99,9 @@ class CourseController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
+            'user_type' => ['required', 'string', Rule::in(User::ALLOWED_USER_TYPES)],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 }
