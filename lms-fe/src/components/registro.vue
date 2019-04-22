@@ -11,7 +11,7 @@
             </div>
             <div>
             <label for="password">Senha:</label><br>
-            <input id="password" type="password" v-model="password" required></textarea>
+            <input id="password" type="password" v-model="password" required/>
             </div>
             <button :class="[name ? activeClass : '']" type="submit">Registrar</button>
             <div>
@@ -36,8 +36,7 @@ export default {
     },
     methods: {
         submitForm() {
-        axios.post('//jsonplaceholder.typicode.com/posts', {
-            userID: this.userID,
+        axios.post('localhost/api/user', {
             name: this.name,
             email: this.email,
             password: this.password
