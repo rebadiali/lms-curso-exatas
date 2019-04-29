@@ -42,7 +42,7 @@ class TemaController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return TemaController::create($request->all());
+        return Tema::create($request->all());
     }
 
     /**
@@ -51,7 +51,7 @@ class TemaController extends Controller
      * @param  \App\TemaController  $TemaController
      * @return \Illuminate\Http\Response
      */
-    public function show(TemaController $TemaController)
+    public function show(Tema $TemaController)
     {
         return $TemaController;
     }
@@ -62,7 +62,7 @@ class TemaController extends Controller
      * @param  \App\TemaController  $TemaController
      * @return \Illuminate\Http\Response
      */
-    public function edit(TemaController $TemaController)
+    public function edit(Tema $TemaController)
     {
         //
     }
@@ -74,7 +74,7 @@ class TemaController extends Controller
      * @param  \App\TemaController  $TemaController
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TemaController $TemaController)
+    public function update(Request $request, Tema $TemaController)
     {
         return $TemaController->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
@@ -99,7 +99,7 @@ class TemaController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255']
+            'name' => ['required', 'string', 'max:255'],
 			]);
     }
 }
