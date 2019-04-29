@@ -34,3 +34,12 @@ Route::resource('user', 'UserController',
         ],
     ]
 );
+
+Route::resource('tema', 'TemaController',
+   [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
