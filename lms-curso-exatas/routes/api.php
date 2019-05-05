@@ -52,3 +52,11 @@ Route::resource('question', 'QuestionController',
         ],
     ]
 );
+
+Route::resource('resposta', 'RespostaController',
+   [
+        'except' => [
+            "create"
+        ],
+    ]
+);
