@@ -1,2 +1,11 @@
 # lms-curso-exatas
-Projeto final da disciplina Laboratório de Desenvolvimento de Software do curso ADS do IFSP-Guarulhos.
+# Para rodar o Back-End
+
+# install dependencies
+-- composer install
+
+# criar bancos e tabelas
+-- php artisan migrate
+
+# rodar o servidor 
+-- php artisan serve
