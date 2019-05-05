@@ -43,3 +43,12 @@ Route::resource('tema', 'TemaController',
         ],
     ]
 );
+
+Route::resource('question', 'QuestionController',
+   [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);

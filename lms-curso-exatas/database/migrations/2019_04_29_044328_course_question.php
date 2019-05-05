@@ -16,9 +16,7 @@ class CourseQuestion extends Migration
             Schema::create('CourseQuestion', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table -> integer('tema_id')->references('id')->on('CourseTemas');
-            $table -> string('Titulo');
-			$table -> string('Pergunta');
-			$table -> string('Resposta');
+			$table -> string('pergunta');
             $table->timestamps();
         });
     }
