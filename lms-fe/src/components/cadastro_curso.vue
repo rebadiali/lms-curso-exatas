@@ -50,7 +50,7 @@
     }
   }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 $primary: #5968d7;
 
 #app {
