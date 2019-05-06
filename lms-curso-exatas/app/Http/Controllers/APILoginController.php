@@ -1,7 +1,6 @@
-// APILoginController.php
-
 <?php
 
+namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Http\Request;
