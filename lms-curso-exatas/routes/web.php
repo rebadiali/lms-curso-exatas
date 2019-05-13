@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('mailable', function () {
     return new App\Mail\emailCadastro('zé','111','teste.com');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
