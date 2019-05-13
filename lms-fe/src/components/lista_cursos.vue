@@ -1,24 +1,29 @@
+
 <template>
-    <div id="app">
-        <button @click="getListCourse">List</button>
-        <div>
-          <table>
-            <tr>
-              <th><pre>ID</pre></th>
-              <th><pre>   Professor</pre></th>
-              <th><pre> Nome do Curso</pre></th>
-            </tr>
-            <tr v-for="item in data" :key="item.id">
-              <td><pre>{{ item.id }}</pre></td>
-              <td><pre>{{ item.professor_id }}</pre></td>
-              <td><pre>{{ item.name }}</pre></td>
-            </tr>
-          </table>
-        </div>
+    <div>
+      <md-table md-card>
+        <md-table-toolbar>
+          <h1 class="md-title">Cursos</h1>
+          <md-button @click="getListCourse" class="md-fab md-mini md-primary">
+            <md-icon>add</md-icon>
+          </md-button>
+        </md-table-toolbar>
+        <md-table-row>
+          <md-table-head md-numeric>ID</md-table-head>
+          <md-table-head>Nome</md-table-head>
+          <md-table-head md-numeric>Professor</md-table-head>
+        </md-table-row>
+        <md-table-row v-for="item in data" :key="item.id">
+          <md-table-cell md-label="ID" md-sort-by="id" md-numeric>{{ item.id }}</md-table-cell>
+          <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
+          <md-table-cell md-label="Professor" md-sort-by="professor" md-numeric>{{ item.professor_id }}</md-table-cell>
+        </md-table-row>
+      </md-table>
     </div>
 </template>
 <script>
   import axios from 'axios';
+  import Topbar from './top-bar';
 
   export default {
     name: 'registro',
@@ -42,11 +47,13 @@
             this.response = 'Error: ' + error.response.status
         })
       }
+    },
+    components:{
+      Topbar
     }
   }
 </script>
-<style lang="scss">
-
+<style lang="scss" scoped>
 </style>
 
 
