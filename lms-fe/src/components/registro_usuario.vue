@@ -1,9 +1,24 @@
 <template>
-  <div>
-    <md-field md-clearable>
-      <label>Cleareable</label>
-      <md-input v-model="initial"></md-input>
-    </md-field>
+  <div class="registro-usuario">
+    <h2>Registro de usuário</h2>
+    <form @submit.prevent="submitForm">
+      <md-field md-clearable>
+        <label>Nome</label>
+        <md-input v-model="initial"></md-input>
+      </md-field>
+
+      <md-field md-clearable>
+        <label>Email</label>
+        <md-input v-model="initial"></md-input>
+      </md-field>
+
+      <md-field>
+        <label>Senha</label>
+        <md-input v-model="password" type="password"></md-input>
+      </md-field>
+
+      <md-button class="md-raised md-primary">Enviar</md-button>
+    </form>
   </div>
 </template>
 <script>
@@ -13,8 +28,8 @@
     name: 'registro-usuario',
     data() {
       return {
-        initial: 'Initial Value',
-        password: 'mysecurepassword'
+        initial: '',
+        password: ''
       }
     },
     methods: {
@@ -38,6 +53,10 @@
 <style lang="scss" scoped>
   .md-field:last-child {
     margin-bottom: 40px;
+  }
+  .registro-usuario {
+    width: 70%;
+    margin: 0 auto;
   }
 </style>
 
