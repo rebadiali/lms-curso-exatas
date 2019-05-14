@@ -2,20 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Course;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+use App\Question;
 
-class CourseController extends Controller
+class QuestionController extends Controller
 {
-    /**
+       /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Course::all();
+        return Question::all();
     }
 
     /**
@@ -40,27 +41,27 @@ class CourseController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return Course::create($request->all());
+        return Question::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\QuestionController  $QuestionController
      * @return \Illuminate\Http\Response
      */
-    public function show(Course $course)
+    public function show(Question $Question)
     {
-        return $course;
+        return $Question;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Course  $course
+     * @param  \App\QuestionController  $QuestionController
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Question $Question)
     {
         //
     }
@@ -69,23 +70,23 @@ class CourseController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Course  $course
+     * @param  \App\QuestionController  $QuestionController
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Course $course)
+    public function update(Request $request, Question $Question)
     {
-        return $course->update($request->all()) ? "atualizado com sucesso" : "erro na atualização";
+        return $Question->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Course  $course
+     * @param  \App\QuestionController  $QuestionController
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(QuestionController $Question)
     {
-        return $course->delete() ? "removido com sucesso" : "erro na remoção";
+        return $Question->delete() ? "Removido com sucesso" : "Erro na remoção";
     }
 
     /**
@@ -97,7 +98,8 @@ class CourseController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-        ]);
+			'tema_id' => ['required', 'integer', 'max:255'],
+			'pergunta' => ['required', 'string', 'max:255']
+			]);
     }
 }

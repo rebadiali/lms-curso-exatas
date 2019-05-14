@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Question extends Model
 {
+	public $table = "CourseQuestion";
+	
     protected $fillable = [
-        'professor_id', 'name',
+        'tema_id','pergunta',
     ];
 }

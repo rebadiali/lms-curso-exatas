@@ -26,8 +26,37 @@ Route::resource('course', 'CourseController',
     ]
 );
 
-Route::post('user/register', 'APIRegisterController@register');
-Route::post('user/login', 'APILoginController@login');
-Route::middleware('jwt.auth')->get('users', function(Request $request) {
-    return auth()->user();
-});
+Route::resource('user', 'UserController',
+    [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
+
+Route::resource('tema', 'TemaController',
+   [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
+
+Route::resource('question', 'QuestionController',
+   [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
+
+Route::resource('resposta', 'RespostaController',
+   [
+        'except' => [
+            "create"
+        ],
+    ]
+);

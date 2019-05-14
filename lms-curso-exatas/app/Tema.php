@@ -4,9 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Course extends Model
+class Tema extends Model
 {
+	public $table = "CourseTemas";
+	
     protected $fillable = [
-        'professor_id', 'name',
+        'name'
     ];
 }
