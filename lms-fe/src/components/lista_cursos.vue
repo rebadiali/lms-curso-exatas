@@ -23,7 +23,6 @@
 </template>
 <script>
   import axios from 'axios';
-  import Topbar from './top-bar';
 
   export default {
     name: 'registro',
@@ -47,9 +46,6 @@
             this.response = 'Error: ' + error.response.status
         })
       }
-    },
-    components:{
-      Topbar
     }
   }
 </script>
