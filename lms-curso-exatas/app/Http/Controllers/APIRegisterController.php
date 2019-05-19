@@ -25,6 +25,7 @@ class APIRegisterController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => bcrypt($request->get('password')),
+            'user_type' => 'aluno',
         ]);
         $user = User::first();
         $token = JWTAuth::fromUser($user);

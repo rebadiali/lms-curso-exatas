@@ -5,6 +5,8 @@ import CadCurso from './components/cadastro_curso'
 import ListCurso from './components/lista_cursos'
 import CadTheme from './components/cadastro_tema'
 import CadQuestion from './components/cadastro_questao'
+import RegistroUsuario from './components/registro_usuario'
+import LoginUsuario from './components/login_usuario'
 
 Vue.use(Router)
 
@@ -39,6 +41,16 @@ export default new Router({
       path: '/cadastro-questao',
       name: 'cadastro-questao',
       component: CadQuestion
+    },
+    {
+      path: '/registro-usuario',
+      name: 'Registro-usuario',
+      component: RegistroUsuario
+    },
+    {
+      path: '/login-usuario',
+      name: 'Login-usuario',
+      component: LoginUsuario
     }
   ]
 })

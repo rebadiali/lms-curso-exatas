@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class APILoginController extends Controller
 {
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
             'password'=> 'required'
@@ -23,7 +22,7 @@ class APILoginController extends Controller
         $credentials = $request->only('email', 'password');
         try {
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return response()->json(['error' => 'Usuário ou senha incorreto'], 401);
             }
         } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
