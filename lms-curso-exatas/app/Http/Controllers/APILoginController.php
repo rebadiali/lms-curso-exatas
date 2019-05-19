@@ -11,8 +11,7 @@ use Illuminate\Support\Facades\Auth;
 
 class APILoginController extends Controller
 {
-    public function login(Request $request)
-    {
+    public function login(Request $request) {
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255',
             'password'=> 'required'

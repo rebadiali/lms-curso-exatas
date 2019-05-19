@@ -4,6 +4,7 @@ import CadAluno from './components/cadastro_aluno'
 import CadCurso from './components/cadastro_curso'
 import ListCurso from './components/lista_cursos'
 import RegistroUsuario from './components/registro_usuario'
+import LoginUsuario from './components/login_usuario'
 
 Vue.use(Router)
 
@@ -33,6 +34,11 @@ export default new Router({
       path: '/registro-usuario',
       name: 'Registro-usuario',
       component: RegistroUsuario
+    },
+    {
+      path: '/login-usuario',
+      name: 'Login-usuario',
+      component: LoginUsuario
     }
   ]
 })
