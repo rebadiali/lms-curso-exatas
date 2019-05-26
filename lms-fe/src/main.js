@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
+import Login from './components/login_usuario.vue'
 import router from './router'
 import 'es6-promise/auto'
 import VueMaterial from 'vue-material'
@@ -13,17 +14,18 @@ Vue.use(VueMaterial)
 new Vue({
   el: '#app',
   router,
-  template: '<App/>',
-  components: { App },
-  data: {
-    tokenUser: ''
-  },
-  mounted () {
+  render: function (h) {
     if (sessionStorage.tokenUser) {
-      this.tokenUser = sessionStorage.tokenUser;
+      tokenUser = '';
+      tokenUser = sessionStorage.tokenUser;
       alert(this.tokenUser)
+      return h(App);
     }else{
-      alert('token não existe');
+      return h(Login);
     }
+  },
+  components: {
+    App,
+    Login 
   }
 })
