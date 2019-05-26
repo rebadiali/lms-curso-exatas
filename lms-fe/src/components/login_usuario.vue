@@ -44,12 +44,13 @@
                 password: this.password
             }).then(response => {
                 this.token = response.data.token
-                
-                getUserByToken(this.token).then(response => {
+                this.response = response
+                sessionStorage.tokenUser = response.data.token;
+                /*getUserByToken(this.token).then(response => {
                     this.response = JSON.stringify(response, true, 2)
                 }).catch(error => {
                     this.response = 'Error: ' + error.response.status
-                })
+                })*/
             }).catch(error => {
                 this.response = 'Error: ' + error.response.status
             })

@@ -14,5 +14,16 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  data: {
+    tokenUser: ''
+  },
+  mounted () {
+    if (sessionStorage.tokenUser) {
+      this.tokenUser = sessionStorage.tokenUser;
+      alert(this.tokenUser)
+    }else{
+      alert('token não existe');
+    }
+  }
 })
