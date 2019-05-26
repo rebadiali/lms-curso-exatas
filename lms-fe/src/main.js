@@ -14,18 +14,8 @@ Vue.use(VueMaterial)
 new Vue({
   el: '#app',
   router,
-  render: function (h) {
-    if (sessionStorage.tokenUser) {
-      tokenUser = '';
-      tokenUser = sessionStorage.tokenUser;
-      alert(this.tokenUser)
-      return h(App);
-    }else{
-      return h(Login);
-    }
-  },
+  render: (h) => h(App),
   components: {
-    App,
-    Login 
+    App
   }
 })

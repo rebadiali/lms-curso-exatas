@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <menu-lateral></menu-lateral>
+    <menu-lateral v-if="tokenExist"></menu-lateral>
+    <router-view v-else></router-view>
   </div>
 </template>
 
@@ -9,8 +10,24 @@ import menuLateral from "./components/menu_lateral";
 
 export default {
   name: 'app',
-  components: {
+  data() {
+    return {
+      tokenUser: '',
+      tokenExist: false
+    }
+  }
+  ,components: {
     menuLateral
+  },
+  mounted () {
+    if (sessionStorage.tokenUser) {
+      this.tokenUser = sessionStorage.tokenUser;
+      this.tokenExist = true;
+      console.log(this.tokenUser);
+    }else{
+      console.log("Token não existe.");
+      this.tokenExist = false;
+    }
   }
 }
 </script>
