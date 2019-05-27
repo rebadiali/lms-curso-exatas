@@ -9,7 +9,7 @@ class Resposta extends Model
  	public $table = "CourseResposta";
 	
     protected $fillable = [
-        'question_id','resposta','correto'
+        'question_id','answer','is_correct'
     ];
 }
 

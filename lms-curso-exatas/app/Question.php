@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-	public $table = "CourseQuestion";
+	public $table = "questions";
 	
     protected $fillable = [
-        'tema_id','pergunta',
+        'question',
     ];
 }

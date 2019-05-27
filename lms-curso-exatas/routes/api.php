@@ -35,7 +35,7 @@ Route::resource('user', 'UserController',
     ]
 );
 
-Route::resource('tema', 'TemaController',
+Route::resource('theme', 'ThemeController',
    [
         'except' => [
             "create",
@@ -53,7 +53,7 @@ Route::resource('question', 'QuestionController',
     ]
 );
 
-Route::resource('resposta', 'RespostaController',
+Route::resource('answer', 'AnswerController',
    [
         'except' => [
             "create"
