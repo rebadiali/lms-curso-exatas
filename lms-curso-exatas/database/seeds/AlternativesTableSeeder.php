@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AnswersTableSeeder extends Seeder
+class AlternativesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,54 +11,54 @@ class AnswersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("answers")->insert(
+        DB::table("alternatives")->insert(
             [
                 [
                     'id' => 1,
                     'question_id' => 1,
-                    'answer' => 'is',
+                    'alternative' => 'is',
                     'is_correct' => true,
                 ],
                 [
                     'id' => 2,
                     'question_id' => 1,
-                    'answer' => 'are',
+                    'alternative' => 'are',
                     'is_correct' => false,
                 ],
                 [
                     'id' => 3,
                     'question_id' => 1,
-                    'answer' => 'am',
+                    'alternative' => 'am',
                     'is_correct' => false,
                 ],
                 [
                     'id' => 4,
                     'question_id' => 1,
-                    'answer' => 'were',
+                    'alternative' => 'were',
                     'is_correct' => false,
                 ],
                 [
                     'id' => 5,
                     'question_id' => 1,
-                    'answer' => 'certa',
+                    'alternative' => 'certa',
                     'is_correct' => true,
                 ],
                 [
                     'id' => 6,
                     'question_id' => 1,
-                    'answer' => 'errada',
+                    'alternative' => 'errada',
                     'is_correct' => false,
                 ],
                 [
                     'id' => 7,
                     'question_id' => 1,
-                    'answer' => 'errada',
+                    'alternative' => 'errada',
                     'is_correct' => false,
                 ],
                 [
                     'id' => 8,
                     'question_id' => 1,
-                    'answer' => 'errada',
+                    'alternative' => 'errada',
                     'is_correct' => false,
                 ],
             ]

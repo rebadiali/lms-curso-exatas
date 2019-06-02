@@ -11,4 +11,8 @@ class Question extends Model
     protected $fillable = [
         'question',
     ];
+
+    public function Themes(){
+        return $this->belongsToMany("App\Theme");
+    }
 }

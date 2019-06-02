@@ -52,8 +52,7 @@ class ThemeController extends Controller
      */
     public function show(Theme $theme)
     {
-        return $theme; //RETORNO ORIGINAL DA FUNÇÃO, O DE BAIXO É EXEMPLO DE PERGUNTAS
-        //return $theme->questions()->inRandomOrder()->take(1)->get();
+        return $theme;
     }
 
     /**
@@ -82,12 +81,22 @@ class ThemeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\ThemeController  $ThemeController
+     * @param  \App\Theme  $ThemeController
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ThemeController $theme)
+    public function destroy(Theme $theme)
     {
         return $theme->delete() ? "Removido com sucesso" : "Erro na remoção";
+    }
+
+    /**
+     * @param Theme $theme
+     * @param $quantity
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
+     */
+    public function getThemeQuestions (Theme $theme, $quantity)
+    {
+        return $theme->questions()->inRandomOrder()->take($quantity)->get();
     }
 
     /**
@@ -99,7 +108,8 @@ class ThemeController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-			]);
+            'theme' => ['required', 'string', 'max:255'],
+            'course_id' => ['required', 'exists:courses,id'],
+        ]);
     }
 }

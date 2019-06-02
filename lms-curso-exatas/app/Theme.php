@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Theme extends Model
 {
     protected $fillable = [
-        'theme'
+        'theme',
+        'course_id'
     ];
 
     public function Questions(){

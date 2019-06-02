@@ -90,6 +90,17 @@ class QuestionController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @param Question $question
+     * @return Question
+     */
+    public function associateQuestionToTheme (Request $request, Question $question)
+    {
+        $question->themes()->attach($request->themeIds);
+        return $question;
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -98,7 +109,7 @@ class QuestionController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-			'question' => ['required', 'string', 'max:255']
+			'question' => ['required']
 		]);
     }
 }

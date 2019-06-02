@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Answer;
+use App\Alternative;
 
-class AnswerController extends Controller
+class AlternativeController extends Controller
 {
         /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class AnswerController extends Controller
      */
     public function index()
     {
-        return Answer::all();
+        return Alternative::all();
     }
 
     /**
@@ -41,27 +41,27 @@ class AnswerController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return Answer::create($request->all());
+        return Alternative::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Answer  $Answer
+     * @param  \App\Alternative  $Alternative
      * @return \Illuminate\Http\Response
      */
-    public function show(Answer $answer)
+    public function show(Alternative $alternative)
     {
-        return $answer;
+        return $alternative;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Answer  $answer
+     * @param  \App\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function edit(Answer $answer)
+    public function edit(Alternative $alternative)
     {
         //
     }
@@ -70,23 +70,23 @@ class AnswerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Answer  $answer
+     * @param  \App\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Request $request, Alternative $alternative)
     {
-        return $Answer->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
+        return $alternative->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Answer  $answer
+     * @param  \App\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Answer $answer)
+    public function destroy(Alternative $alternative)
     {
-        return $answer->delete() ? "Removido com sucesso" : "Erro na remoção";
+        return $alternative->delete() ? "Removido com sucesso" : "Erro na remoção";
     }
 
     /**
@@ -98,8 +98,8 @@ class AnswerController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-			'question_id' => ['required', 'integer', 'max:255'],
-			'answer' => ['required', 'string', 'max:255'],
+			'question_id' => ['required', 'integer'],
+			'alternative' => ['required', 'string', 'max:255'],
 			'is_correct' => ['required', 'boolean']
 		]);
     }
