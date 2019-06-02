@@ -6,9 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Question extends Model
 {
-	public $table = "CourseQuestion";
+	public $table = "questions";
 	
     protected $fillable = [
-        'tema_id','pergunta',
+        'question',
     ];
+
+    public function Themes(){
+        return $this->belongsToMany("App\Theme");
+    }
 }

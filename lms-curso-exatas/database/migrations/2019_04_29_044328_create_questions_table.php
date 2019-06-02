@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CourseQuestion extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CourseQuestion extends Migration
      */
     public function up()
     {
-            Schema::create('CourseQuestion', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table -> integer('tema_id')->references('id')->on('CourseTemas');
-			$table -> string('pergunta');
+        Schema::create('questions', function (Blueprint $table) {
+            $table->increments('id');
+            $table->text('question');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CourseQuestion extends Migration
      */
     public function down()
     {
-               Schema::dropIfExists('CourseQuestion');
+        Schema::dropIfExists('questions');
     }
 }

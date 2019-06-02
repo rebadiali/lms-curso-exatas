@@ -2,22 +2,21 @@
 
 namespace App\Http\Controllers;
 
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Tema;
+use App\Alternative;
 
-class TemaController extends Controller
+class AlternativeController extends Controller
 {
-       /**
+        /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Tema::all();
+        return Alternative::all();
     }
 
     /**
@@ -42,27 +41,27 @@ class TemaController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return Tema::create($request->all());
+        return Alternative::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\TemaController  $TemaController
+     * @param  \App\Alternative  $Alternative
      * @return \Illuminate\Http\Response
      */
-    public function show(Tema $Tema)
+    public function show(Alternative $alternative)
     {
-        return $Tema;
+        return $alternative;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\TemaController  $TemaController
+     * @param  \App\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function edit(Tema $Tema)
+    public function edit(Alternative $alternative)
     {
         //
     }
@@ -71,23 +70,23 @@ class TemaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\TemaController  $TemaController
+     * @param  \App\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tema $Tema)
+    public function update(Request $request, Alternative $alternative)
     {
-        return $Tema->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
+        return $alternative->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\TemaController  $TemaController
+     * @param  \App\Alternative  $alternative
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TemaController $Tema)
+    public function destroy(Alternative $alternative)
     {
-        return $Tema->delete() ? "Removido com sucesso" : "Erro na remoção";
+        return $alternative->delete() ? "Removido com sucesso" : "Erro na remoção";
     }
 
     /**
@@ -99,7 +98,9 @@ class TemaController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-			]);
+			'question_id' => ['required', 'integer'],
+			'alternative' => ['required', 'string', 'max:255'],
+			'is_correct' => ['required', 'boolean']
+		]);
     }
 }

@@ -47,21 +47,21 @@ class QuestionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\QuestionController  $QuestionController
+     * @param  \App\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function show(Question $Question)
+    public function show(Question $question)
     {
-        return $Question;
+        return $question;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\QuestionController  $QuestionController
+     * @param  \App\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $Question)
+    public function edit(Question $question)
     {
         //
     }
@@ -70,23 +70,34 @@ class QuestionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\QuestionController  $QuestionController
+     * @param  \App\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $Question)
+    public function update(Request $request, Question $question)
     {
-        return $Question->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
+        return $question->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\QuestionController  $QuestionController
+     * @param  \App\Question  $Question
      * @return \Illuminate\Http\Response
      */
-    public function destroy(QuestionController $Question)
+    public function destroy(Question $question)
     {
-        return $Question->delete() ? "Removido com sucesso" : "Erro na remoção";
+        return $question->delete() ? "Removido com sucesso" : "Erro na remoção";
+    }
+
+    /**
+     * @param Request $request
+     * @param Question $question
+     * @return Question
+     */
+    public function associateQuestionToTheme (Request $request, Question $question)
+    {
+        $question->themes()->attach($request->themeIds);
+        return $question;
     }
 
     /**
@@ -98,8 +109,7 @@ class QuestionController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-			'tema_id' => ['required', 'integer', 'max:255'],
-			'pergunta' => ['required', 'string', 'max:255']
-			]);
+			'question' => ['required']
+		]);
     }
 }

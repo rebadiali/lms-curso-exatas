@@ -5,18 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Resposta;
+use App\Theme;
 
-class RespostaController extends Controller
+class ThemeController extends Controller
 {
-        /**
+       /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Resposta::all();
+        return Theme::all();
     }
 
     /**
@@ -41,27 +41,27 @@ class RespostaController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return Resposta::create($request->all());
+        return Theme::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\RespostaController  $RespostaController
+     * @param  \App\ThemeController  $ThemeController
      * @return \Illuminate\Http\Response
      */
-    public function show(Resposta $Resposta)
+    public function show(Theme $theme)
     {
-        return $Resposta;
+        return $theme;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\RespostaController  $RespostaController
+     * @param  \App\ThemeController  $ThemeController
      * @return \Illuminate\Http\Response
      */
-    public function edit(Resposta $Resposta)
+    public function edit(Theme $theme)
     {
         //
     }
@@ -70,23 +70,33 @@ class RespostaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\RespostaController  $RespostaController
+     * @param  \App\ThemeController  $ThemeController
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Resposta $Resposta)
+    public function update(Request $request, Theme $theme)
     {
-        return $Resposta->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
+        return $theme->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\RespostaController  $RespostaController
+     * @param  \App\Theme  $ThemeController
      * @return \Illuminate\Http\Response
      */
-    public function destroy(RespostaController $Resposta)
+    public function destroy(Theme $theme)
     {
-        return $Resposta->delete() ? "Removido com sucesso" : "Erro na remoção";
+        return $theme->delete() ? "Removido com sucesso" : "Erro na remoção";
+    }
+
+    /**
+     * @param Theme $theme
+     * @param $quantity
+     * @return \Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection
+     */
+    public function getThemeQuestions (Theme $theme, $quantity)
+    {
+        return $theme->questions()->inRandomOrder()->take($quantity)->get();
     }
 
     /**
@@ -98,9 +108,8 @@ class RespostaController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-			'question_id' => ['required', 'integer', 'max:255'],
-			'resposta' => ['required', 'string', 'max:255'],
-			'correto' => ['required', 'boolean']
-			]);
+            'theme' => ['required', 'string', 'max:255'],
+            'course_id' => ['required', 'exists:courses,id'],
+        ]);
     }
 }

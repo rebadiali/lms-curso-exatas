@@ -35,7 +35,7 @@ Route::resource('user', 'UserController',
     ]
 );
 
-Route::resource('tema', 'TemaController',
+Route::resource('theme', 'ThemeController',
    [
         'except' => [
             "create",
@@ -53,7 +53,11 @@ Route::resource('question', 'QuestionController',
     ]
 );
 
-Route::resource('resposta', 'RespostaController',
+Route::put('question/{question}/associate', 'QuestionController@associateQuestionToTheme');
+
+Route::get('theme/{theme}/questions/{quantity}', 'ThemeController@getThemeQuestions');
+
+Route::resource('alternative', 'AlternativeController',
    [
         'except' => [
             "create"
