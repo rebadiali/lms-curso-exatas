@@ -1,16 +1,20 @@
 <template>
   <div id="app">
-    <menu-lateral></menu-lateral>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import menuLateral from "./components/menu_lateral";
 
 export default {
   name: 'app',
-  components: {
-    menuLateral
+  data() {
+    return {
+    }
+  }
+  ,components: {
+  },
+  mounted () {
   }
 }
 </script>

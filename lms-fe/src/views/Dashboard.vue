@@ -41,7 +41,7 @@
           </md-list-item>
         </md-list>
       </md-app-drawer>
-
+  
       <md-app-content>
         <router-view></router-view>
       </md-app-content>
@@ -51,7 +51,7 @@
 
 <script>
   export default {
-    name: 'menu-lateral',
+    name: 'dashboard',
     data(){
       return {
         menuVisible: false
