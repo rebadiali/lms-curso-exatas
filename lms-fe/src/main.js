@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
-import Login from './components/login_usuario.vue'
 import router from './router'
 import 'es6-promise/auto'
 import VueMaterial from 'vue-material'

@@ -19,12 +19,6 @@
 
       <md-button class="md-raised md-primary" type="submit">Enviar</md-button>
     </form>
-     <div>
-        <h3>Response from server:</h3>
-        <pre>
-          Response: {{ response }}
-        </pre>
-      </div>
   </div>
 </template>
 <script>
@@ -43,7 +37,6 @@
     methods: {
       submitForm() {
             var matchedCase = new Array();
-            matchedCase.push("[$@$!%*#?&]"); // Special Charector
             matchedCase.push("[A-Z]");      // Uppercase Alpabates
             matchedCase.push("[0-9]");      // Numbers
             matchedCase.push("[a-z]");     // Lowercase Alphabates
@@ -59,8 +52,7 @@
               "Senha fraca. Sua senha deve conter:\n" +
               "Entre 6 e 25 caracteres \n" +
               "Letras maiúsculas e minúsculas \n" +
-              "Números de 0 a 9 \n" +
-              "No mínimo um caracter especial"
+              "Números de 0 a 9 \n"
               )
           }else{
             axios.defaults.baseURL ='http://localhost:8000'

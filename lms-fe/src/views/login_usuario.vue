@@ -14,12 +14,6 @@
 
       <md-button class="md-raised md-primary" type="submit">Enviar</md-button>
     </form>
-     <div>
-        <h3>Response from server:</h3>
-        <pre>
-            {{ response }}
-        </pre>
-      </div>
   </div>
 </template>
 <script>
@@ -39,20 +33,15 @@
         submitForm() {
             axios.defaults.baseURL ='http://localhost:8000'
             axios.post('/api/user/login', {
-                name: this.name,
                 email: this.email,
                 password: this.password
             }).then(response => {
                 this.token = response.data.token
                 this.response = response
                 sessionStorage.tokenUser = response.data.token;
-                /*getUserByToken(this.token).then(response => {
-                    this.response = JSON.stringify(response, true, 2)
-                }).catch(error => {
-                    this.response = 'Error: ' + error.response.status
-                })*/
+                this.$router.push('/Dashboard');
             }).catch(error => {
-                this.response = 'Error: ' + error.response.status
+                this.response = 'Error: ' + error.response
             })
         }
     }
