@@ -20,6 +20,13 @@ class CoursesTableSeeder extends Seeder
                     'created_at' => now(),
                     'updated_at' => now(),
                 ],
+                [
+                    'id' => 2,
+                    'professor_id' => 2,
+                    'name' => "Segurança",
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ],
             ]
         );
     }

@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
+use App\Answer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\User;
 use Illuminate\Validation\Rule;
-use App\Theme;
+use Illuminate\Support\Facades\Validator;
 
-class ThemeController extends Controller
+class AnswerController extends Controller
 {
-       /**
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return Theme::all();
+        return Answer::all();
     }
 
     /**
@@ -32,36 +33,36 @@ class ThemeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $validation = $this->validator($request->all());
+        $validation = $this->validator(["data" => $request->all()]);
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return Theme::create($request->all());
+        return Answer::insert($request->all()) ? "foi parsa" : "azedo";
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\ThemeController  $ThemeController
+     * @param \App\Answer $answer
      * @return \Illuminate\Http\Response
      */
-    public function show(Theme $theme)
+    public function show(Answer $answer)
     {
-        return $theme;
+        return $answer;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\ThemeController  $ThemeController
+     * @param \App\Answer $answer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Theme $theme)
+    public function edit(Answer $answer)
     {
         //
     }
@@ -69,37 +70,34 @@ class ThemeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\ThemeController  $ThemeController
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Answer $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Theme $theme)
+    public function update(Request $request, Answer $answer)
     {
-        return $theme->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
+        return $answer->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Theme  $ThemeController
+     * @param \App\Answer $answer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Theme $theme)
+    public function destroy(Answer $answer)
     {
-        return $theme->delete() ? "Removido com sucesso" : "Erro na remoção";
+        return $answer->delete() ? "Removido com sucesso" : "Erro na remoção";
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
-            'theme' => ['required', 'string', 'max:255'],
-            'course_id' => ['required', 'exists:courses,id'],
+            'data.*.student_id' => ['required'],
+            'data.*.questionnaire_id' => ['required'],
+            'data.*.question_id' => ['required'],
+            'data.*.alternative_id' => ['required'],
         ]);
     }
 }

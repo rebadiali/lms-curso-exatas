@@ -13,10 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
 Route::resource('course', 'CourseController',
     [
         'except' => [
@@ -53,9 +49,16 @@ Route::resource('question', 'QuestionController',
     ]
 );
 
-Route::put('question/{question}/associate', 'QuestionController@associateQuestionToTheme');
+Route::resource('questionnaire', 'QuestionnaireController',
+    [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
 
-Route::get('theme/{theme}/questions/{quantity}', 'ThemeController@getThemeQuestions');
+Route::put('question/{question}/associate', 'QuestionController@associateQuestionToTheme');
 
 Route::resource('alternative', 'AlternativeController',
    [
@@ -65,15 +68,27 @@ Route::resource('alternative', 'AlternativeController',
     ]
 );
 
+Route::resource('answer', 'AnswerController',
+    [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
 
 Route::post('user/register', 'APIRegisterController@register');
+
 Route::post('user/login', 'APILoginController@login');
+
 Route::middleware('jwt.auth')->get('users', function(Request $request) {
     return auth()->user();
 });
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
 Route::group(['middleware' => 'jwt.auth'], function(){
     Route::post('user/logout', 'APILogoutController@logout');
 });
