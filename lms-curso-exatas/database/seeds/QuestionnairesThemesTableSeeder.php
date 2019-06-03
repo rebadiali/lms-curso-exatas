@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ThemesQuestionsTableSeeder extends Seeder
+class QuestionnairesThemesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -10,20 +10,23 @@ class ThemesQuestionsTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {        
-        DB::table("question_theme")->insert(
+    {
+        DB::table("questionnaire_theme")->insert(
             [
                 [
                     'theme_id' => 1,
-                    'question_id' => 1,
+                    'questionnaire_id' => 1,
+                    'quantity' => 5,
                 ],
                 [
                     'theme_id' => 2,
-                    'question_id' => 1,
+                    'questionnaire_id' => 1,
+                    'quantity' => 5,
                 ],
                 [
                     'theme_id' => 2,
-                    'question_id' => 2,
+                    'questionnaire_id' => 2,
+                    'quantity' => 10,
                 ],
             ]
         );

@@ -15,4 +15,12 @@ class Question extends Model
     public function Themes(){
         return $this->belongsToMany("App\Theme");
     }
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function alternatives()
+    {
+        return $this->hasMany('App\Alternative');
+    }
 }
