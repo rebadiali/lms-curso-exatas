@@ -1,14 +1,14 @@
 <template>
   <div class="registro-usuario">
-    <h2>Registro de usuário</h2>
+    <h2>Novo Professor</h2>
     <form @submit.prevent="submitForm">
       <md-field md-clearable>
-        <label>Nome</label>
+        <label>Nome do Professor:</label>
         <md-input id="name" type="text" required v-model="name"></md-input>
       </md-field>
 
       <md-field md-clearable>
-        <label>Email</label>
+        <label>Email Institucional</label>
         <md-input id="email" type="email" required v-model="email"></md-input>
       </md-field>
 
@@ -32,7 +32,7 @@
         email: '',
         password: '',
         response: '',
-        type: 'aluno'
+        type: 'professor'
       }
     },
     methods: {
@@ -63,17 +63,15 @@
                 password: this.password,
                 user_type: this.type
             }).then(response => {
-                this.response = response
-                alert('Cadastrado com sucesso');
                 this.response = response;
                 this.$router.push('/login-usuario');
             }).catch(error => {
                 this.response = 'Error: ' + error.response.status
             })
-        } 
           }
       }
     }
+  }
 </script>
 <style lang="scss" scoped>
   .md-field:last-child {
