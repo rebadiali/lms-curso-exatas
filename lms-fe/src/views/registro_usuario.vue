@@ -47,7 +47,7 @@
                     ctr++;
                 }
             }
-          if(ctr <  4){
+          if(ctr <  3){
             alert(
               "Senha fraca. Sua senha deve conter:\n" +
               "Entre 6 e 25 caracteres \n" +
@@ -61,11 +61,12 @@
                 email: this.email,
                 password: this.password
             }).then(response => {
-                this.response = response
+                this.response = response;
+                this.$router.push('/login-usuario');
             }).catch(error => {
                 this.response = 'Error: ' + error.response.status
             })
-          } 
+          }
       }
     }
   }

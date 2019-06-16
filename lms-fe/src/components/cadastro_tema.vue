@@ -30,7 +30,7 @@
     methods: {
       submitForm() {
         axios.defaults.baseURL ='http://localhost:8000'
-        axios.post('/api/tema', {
+        axios.post('/api/theme', {
             name: this.themename
         }).then(response => {
             this.response = JSON.stringify(response, null, 2)

@@ -47,8 +47,8 @@
     }
   }
   function getUserByToken(token){
-        return axios.get('/api/users', { 
-            headers: { Authorization: `Bearer ${token}` } 
+        return axios.get('/api/users', {
+            headers: { Authorization: `Bearer ${token}` }
         });
     }
 </script>
