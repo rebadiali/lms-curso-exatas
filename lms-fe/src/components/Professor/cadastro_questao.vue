@@ -26,29 +26,29 @@
       return {
       question: '',
       response: '',
-      themeId: '',
+      themeId: [],
       activeClass: 'active',
       data: '',
       sucess: false
       }
     },
     methods: {
-        submitForm() {
-            axios.defaults.baseURL ='http://localhost:8000'
-            axios.post('/api/question', {
-                pergunta: this.question,
-                tema_id: this.themeId
-            }).then(response => {
-                this.response = JSON.stringify(response, null, 2)
-            }).catch(error => {
-                this.response = 'Error: ' + error.response.status
-            })
-            this.sucess = true;
-        }
+      submitForm() {
+          axios.defaults.baseURL ='http://localhost:8000'
+          axios.post('/api/question', {
+              pergunta: this.question,
+              tema_id: this.themeId
+          }).then(response => {
+              this.response = JSON.stringify(response, null, 2)
+          }).catch(error => {
+              this.response = 'Error: ' + error.response.status
+          })
+          this.sucess = true;
+      }
     },
     mounted: function () {
         axios.defaults.baseURL ='http://localhost:8000'
-        axios.get('/api/tema').then(response => {
+        axios.get('/api/theme').then(response => {
             this.response = JSON.parse(JSON.stringify(response))
             this.data = response.data;
         }).catch(error => {

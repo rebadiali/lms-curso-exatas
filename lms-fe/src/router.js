@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import CadCurso from './components/cadastro_curso'
-import ListCurso from './components/lista_cursos'
-import CadTheme from './components/cadastro_tema'
-import CadQuestion from './components/cadastro_questao'
+import CadCurso from './components/Professor/cadastro_curso'
+import ListCursoAluno from './components/Aluno/lista_cursos'
+import CadTheme from './components/Professor/cadastro_tema'
+import CadQuestion from './components/Professor/cadastro_questao'
 import RegistroUsuario from './views/registro_usuario'
 import LoginUsuario from './views/login_usuario'
 import Home from './views/Home'
@@ -14,11 +14,24 @@ Vue.use(Router)
 const router =  new Router({
   mode: 'history',
   routes: [
+    //-- area de usuario comum
     {
       path: '/',
       name: 'Home',
       component: Home
     },
+
+    {
+      path: '/registro-usuario',
+      name: 'Registro-usuario',
+      component: RegistroUsuario
+    },
+    {
+      path: '/login-usuario',
+      name: 'Login-usuario',
+      component: LoginUsuario
+    },
+    //--- area de usuario expecifico
     {
       path: '/Dashboard',
       name: 'Dashboard',
@@ -32,7 +45,7 @@ const router =  new Router({
         {
           path: '/lista-de-cursos',
           name: 'Lista-de-cursos',
-          component: ListCurso
+          component: ListCursoAluno
         },
         {
           path: '/cadastro-tema',
@@ -45,23 +58,13 @@ const router =  new Router({
           component: CadQuestion
         },
       ]
-    },
-    {
-      path: '/registro-usuario',
-      name: 'Registro-usuario',
-      component: RegistroUsuario
-    },
-    {
-      path: '/login-usuario',
-      name: 'Login-usuario',
-      component: LoginUsuario
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   const whiteList = ['/login-usuario','/','/registro-usuario']
-  
+
   if (sessionStorage.tokenUser) {
     if(whiteList.includes(to.path)){
       next('/Dashboard');
@@ -69,14 +72,15 @@ router.beforeEach((to, from, next) => {
     }
     next();
 
-  }else if(whiteList.includes(to.path)) { 
+  }else if(whiteList.includes(to.path)) {
     next();
     return false;
-  
+
   }else{
     next('/');
   }
 
 })
+
 
 export default router;

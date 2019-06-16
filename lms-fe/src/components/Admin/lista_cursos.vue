@@ -9,12 +9,10 @@
           </md-button>
         </md-table-toolbar>
         <md-table-row>
-          <md-table-head md-numeric>ID</md-table-head>
           <md-table-head>Nome</md-table-head>
           <md-table-head md-numeric>Professor</md-table-head>
         </md-table-row>
         <md-table-row v-for="item in data" :key="item.id">
-          <md-table-cell md-label="ID" md-sort-by="id" md-numeric>{{ item.id }}</md-table-cell>
           <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
           <md-table-cell md-label="Professor" md-sort-by="professor" md-numeric>{{ item.professor_id }}</md-table-cell>
         </md-table-row>
@@ -28,9 +26,6 @@
     name: 'registro',
     data() {
       return {
-      idprofessor: '',
-      name: '',
-      password: '',
       response: '',
       data:'',
       activeClass: 'active'

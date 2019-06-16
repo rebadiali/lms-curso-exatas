@@ -1,9 +1,12 @@
 <template>
     <div id="app">
         <form @submit.prevent="submitForm">
+            <div class="d-flex">
+                <md-checkbox v-for="item in data" :key="item.id" v-model="courseId" :value="item.id">{{ item.name }}</md-checkbox>
+            </div>
             <div>
-            <label for="themename">Tema:</label><br>
-            <input id="themename" type="text" v-model="themename" required/>
+              <label for="themename">Tema:</label><br>
+              <input id="themename" type="text" v-model="themename" required/>
             </div>
             <button :class="[themename ? activeClass : '']" type="submit">Registrar</button>
         </form>
@@ -21,6 +24,7 @@
     data() {
       return {
         themename: '',
+        courseId: [],
         response: '',
         activeClass: 'active',
         data: '',
@@ -31,7 +35,8 @@
       submitForm() {
         axios.defaults.baseURL ='http://localhost:8000'
         axios.post('/api/theme', {
-            name: this.themename
+            name: this.themename,
+            course_id: this.courseId
         }).then(response => {
             this.response = JSON.stringify(response, null, 2)
         }).catch(error => {
@@ -39,6 +44,15 @@
         })
         this.sucess = true;
       }
+    },
+    mounted: function () {
+        axios.defaults.baseURL ='http://localhost:8000'
+        axios.get('/api/course').then(response => {
+            this.response = JSON.parse(JSON.stringify(response))
+            this.data = response.data;
+        }).catch(error => {
+            this.response = 'Error: ' + error.response.status
+        })
     }
   }
 </script>

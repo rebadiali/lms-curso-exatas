@@ -1,23 +1,15 @@
 <template>
-    <div id="app">
+    <div>
         <form @submit.prevent="submitForm">
             <div>
-            <label for="idprofessor">ID do Professor:</label><br>
-            <input id="idprofessor" type="text" v-model="idprofessor" required/>
+              <label for="name">Nome do curso:</label><br>
+              <input id="name" type="text" v-model="name" required/>
             </div>
             <div>
-            <label for="name">Nome do curso:</label><br>
-            <input id="name" type="text" v-model="name" required/>
+              <label for="password">Senha:</label><br>
+              <input id="password" type="password" v-model="password" required/>
             </div>
-            <div>
-            <label for="password">Senha:</label><br>
-            <input id="password" type="password" v-model="password" required/>
-            </div>
-            <button :class="[name ? activeClass : '']" type="submit">Registrar</button>
-            <div>
-            <h3>Response from server:</h3>
-            <pre>{{ response }}</pre>
-            </div>
+              <button :class="[name ? activeClass : '']" type="submit">Registrar</button>
         </form>
     </div>
 </template>
@@ -28,7 +20,6 @@
     name: 'registro',
     data() {
       return {
-      idprofessor: '',
       name: '',
       password: '',
       response: '',
@@ -36,16 +27,19 @@
       }
     },
     methods: {
-      submitForm() {
-      axios.defaults.baseURL ='http://localhost:8000'
-      axios.post('/api/course', {
+      submitForm: function() {
+        axios.defaults.baseURL ='http://localhost:8000'
+        axios.post('/api/course', {
           professor_id: this.idprofessor,
           name: this.name
-      }).then(response => {
+        }).then(response => {
           this.response = JSON.stringify(response, null, 2)
-      }).catch(error => {
+        }).catch(error => {
           this.response = 'Error: ' + error.response.status
-      })
+        })
+      },
+      getUser: function () {
+          // pegar usuario para passar o id do professor dinamicamente
       }
     }
   }
