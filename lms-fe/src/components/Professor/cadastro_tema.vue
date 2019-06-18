@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="submitForm" class="defaultForm">
             <div class="d-flex">
                 <md-checkbox v-for="item in data" :key="item.id" v-model="courseId" :value="item.id">{{ item.name }}</md-checkbox>
             </div>

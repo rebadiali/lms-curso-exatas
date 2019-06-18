@@ -5,16 +5,41 @@
 </template>
 
 <script>
+require('./assets/app.css');
+import axios from 'axios';
 
 export default {
   name: 'app',
-  data() {
+
+  data: function() {
     return {
+      userName: '',
+      typeUser: '',
+      idUser: '',
+      response: ''
     }
-  }
-  ,components: {
   },
-  mounted () {
+
+  methods: {
+    getUser: function() {
+      axios.defaults.baseURL ='http://localhost:8000';
+      let token;
+      //let $this = this;
+      token = window.sessionStorage.tokenUser;
+      axios.get('/api/users', {headers: { Authorization: `Bearer ${token}` }}).then(response => {
+        this.idUser = response.data;
+      }).catch(error => {
+          this.response = 'Error: ' + error.response.status
+      });
+    },
+    
+    getUserByToken: (idUser) => {
+     console.log('funciona porra do id:', idUser);
+    }
+  },
+  mounted: function () {
+    this.getUser()
+    this.getUserByToken(this.idUser);
   }
 }
 </script>

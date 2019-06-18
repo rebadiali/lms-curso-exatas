@@ -1,13 +1,13 @@
 <template>
     <div>
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="submitForm" class="defaultForm">
             <div>
               <label for="name">Nome do curso:</label><br>
-              <input id="name" type="text" v-model="name" required/>
+              <input id="name" type="text" placeholder="Curso" v-model="name" required/>
             </div>
             <div>
               <label for="password">Senha:</label><br>
-              <input id="password" type="password" v-model="password" required/>
+              <input id="password" type="password" placeholder="Senha" v-model="password" required/>
             </div>
               <button :class="[name ? activeClass : '']" type="submit">Registrar</button>
         </form>
@@ -53,9 +53,11 @@ $primary: #5968d7;
   font-family: 'Work Sans', sans-serif;
 }
 
-form {
-  width: 300px;
-  padding: 10px 40px;
+.defaultForm {
+  max-width: 400px;
+  padding: 20px 30px;
+  margin: 0 auto;
+  box-shadow: 1px 1px 1px #ccc;
   label{
     text-transform: uppercase;
     font-size: 13px;
@@ -63,9 +65,12 @@ form {
     font-weight: bold;
   }
   input, textarea {
-    border: 1px solid #ccc;
+    border: none;
+    border-bottom: 2px solid #448aff;
+    border-radius: 0!important;
     color: #333;
-    width: calc(100% - 30px);
+    width: 100%;
+    outline: none;
   }
   input, textarea, button {
     border-radius: 4px;
@@ -82,10 +87,11 @@ button {
   color: white;
   border: none;
   width: 100%;
+  max-width: 200px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  background: #ccc;
+  background: #448aff;
   cursor: pointer;
   box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
   transition: 0.25s all ease;
