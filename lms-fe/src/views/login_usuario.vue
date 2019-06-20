@@ -42,6 +42,7 @@
                 this.$router.push('/Dashboard');
             }).catch(error => {
                 this.response = 'Error: ' + error.response
+                alert('Senha incorreta');
             })
         }
     }

@@ -1,17 +1,17 @@
-/* Forms
+
 .defaultForm {
     max-width: 400px;
     padding: 20px 30px;
     margin: 0 auto;
     box-shadow: 1px 1px 1px #ccc;
 }
-label{
+.defaultForm label{
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 0.03em;
     font-weight: bold;
 }
-input, textarea {
+.defaultForm input, textarea {
     border: none;
     border-bottom: 2px solid #448aff;
     border-radius: 0!important;
@@ -19,13 +19,13 @@ input, textarea {
     width: 100%;
     outline: none;
 }
-input, textarea, button {
+.defaultForm input, textarea, button {
     border-radius: 4px;
     padding: 8px 15px;
     font-family: 'Work Sans', sans-serif;
     font-weight: 300;
 }
-div {
+.defaultForm div {
     margin: 20px 0;
 }
   
@@ -45,4 +45,3 @@ transition: 0.25s all ease;
 button:hover {
     transform: translateY(2px);
 }
-*/

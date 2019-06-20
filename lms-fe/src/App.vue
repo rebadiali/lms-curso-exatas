@@ -27,19 +27,17 @@ export default {
       //let $this = this;
       token = window.sessionStorage.tokenUser;
       axios.get('/api/users', {headers: { Authorization: `Bearer ${token}` }}).then(response => {
-        this.idUser = response.data;
+        window.sessionStorage.idUser = response.data.id;
+        window.sessionStorage.typeUser = response.data.user_type;
+        window.sessionStorage.userName = response.data.name;
       }).catch(error => {
           this.response = 'Error: ' + error.response.status
       });
     },
     
-    getUserByToken: (idUser) => {
-     console.log('funciona porra do id:', idUser);
-    }
   },
   mounted: function () {
-    this.getUser()
-    this.getUserByToken(this.idUser);
+    this.getUser();
   }
 }
 </script>
