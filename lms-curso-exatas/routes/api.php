@@ -31,6 +31,15 @@ Route::resource('user', 'UserController',
     ]
 );
 
+Route::resource('verify', 'VerifyController',
+    [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
+
 Route::resource('professor', 'ProfessorController',
     [
         'except' => [

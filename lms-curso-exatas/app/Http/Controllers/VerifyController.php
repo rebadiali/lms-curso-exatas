@@ -1,26 +1,37 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\VerifyUser;
-use App\User;
-use Mail;
+use App\Verify_User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
-use App\Mail\VerifyMail;
+use App\User;
 
-class ProfessorController extends Controller
+class VerifyController extends Controller
 {
-    /**
+     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $result = User::where('user_type','=','professor')->get();
-        return $result;
+        $validation = $this->validator($request->all());
+        if ($validation->fails()){
+            return response()->json($validation->errors(), 422);
+        }
+
+        $token = $request->token;
+        
+        if(Verify_User::all()->where('token','=',$token)->count() == 1){
+            $user_id = Verify_User::all()->where('token','=',$token)->first()->user_id;
+
+            $user = User::all()->where('id','=',$user_id)->toArray();
+            dd($user);
+          
+        }
+
+        return Verify_User::all()->where('token','=',$token);
     }
 
     /**
@@ -45,40 +56,27 @@ class ProfessorController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-
-        $data = User::create($request->all());
-
-        $verifyUser = VerifyUser::create([
-            'user_id' => $data->id,
-            'token' => str_random(40)
-        ]);
-
-        $mail = array_merge($request->toArray(), $verifyUser->toArray());
-
-        Mail::to($request->email)->send(new VerifyMail($mail));
-
-        return $data;
+        return Verify_User::create($request->all());
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Verify_User  $Verify_User
      * @return \Illuminate\Http\Response
      */
-    public function show(int $user)
+    public function show(Verify_User $Verify_User)
     {
-        $result = User::where('id','=',$user)->where('user_type','=','professor')->get();
-        return $result;
+        return $Verify_User;
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User  $user
+     * @param  \App\Verify_User  $Verify_User
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(Verify_User $Verify_User)
     {
         //
     }
@@ -87,23 +85,23 @@ class ProfessorController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\User  $user
+     * @param  \App\Verify_User  $Verify_User
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Verify_User $Verify_User)
     {
-        return $user->update($request->all()) ? "Atualizado com sucesso" : "Erro na atualização";
+        return $Verify_User->update($request->all()) ? "atualizado com sucesso" : "erro na atualização";
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User  $user
+     * @param  \App\Verify_User  $Verify_User
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(Verify_User $Verify_User)
     {
-        return $user->delete() ? "Removido com sucesso" : "Erro na remoção";
+        return $Verify_User->delete() ? "removido com sucesso" : "erro na remoção";
     }
 
     /**
@@ -115,10 +113,7 @@ class ProfessorController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'user_type' => ['required', 'string', Rule::in(User::ALLOWED_USER_TYPES)],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'token' => ['required', 'string', 'max:255']
         ]);
     }
 }
