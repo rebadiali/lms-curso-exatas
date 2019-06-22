@@ -26,12 +26,13 @@ export default {
       let token;
       //let $this = this;
       token = window.sessionStorage.tokenUser;
+      
       axios.get('/api/users', {headers: { Authorization: `Bearer ${token}` }}).then(response => {
         window.sessionStorage.idUser = response.data.id;
         window.sessionStorage.typeUser = response.data.user_type;
         window.sessionStorage.userName = response.data.name;
       }).catch(error => {
-          this.response = 'Error: ' + error.response.status
+          this.response = 'Error: ' + error.response
       });
     },
 
@@ -42,9 +43,9 @@ export default {
 }
 </script>
 
-<style <style lang="scss">
+<style lang="scss">
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

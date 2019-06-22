@@ -19,7 +19,7 @@
       return {
       name: '',
       userName: window.sessionStorage.userName,
-      professor_Id: window.sessionStorage.id,
+      professor_Id: window.sessionStorage.idUser,
       response: '',
       activeClass: 'active'
       }
@@ -32,6 +32,7 @@
           name: this.name
         }).then(response => {
           this.response = JSON.stringify(response, null, 2)
+          alert("Curso cadastrado com sucesso");
         }).catch(error => {
           this.response = 'Error: ' + error.response.status
         })

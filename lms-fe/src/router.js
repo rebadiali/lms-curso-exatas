@@ -9,6 +9,7 @@ import AssociacaoQT from  './components/Professor/association_quest_theme'
 import RegistroUsuario from './views/registro_usuario'
 import LoginUsuario from './views/login_usuario'
 import Home from './views/Home'
+import Course from './views/Course'
 import Dashboard from './views/Dashboard.vue'
 
 Vue.use(Router)
@@ -68,6 +69,11 @@ const router =  new Router({
           path: '/associacao_quest_tema',
           name: 'associacao_quest_tema',
           component: AssociacaoQT
+        },
+        {
+          path: '/course/:id',
+          name: 'course',
+          component: Course
         },
       ]
     }
