@@ -31,6 +31,15 @@ Route::resource('user', 'UserController',
     ]
 );
 
+Route::resource('professor', 'ProfessorController',
+    [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
+
 Route::resource('theme', 'ThemeController',
    [
         'except' => [
