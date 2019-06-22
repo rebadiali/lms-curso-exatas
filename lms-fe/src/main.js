@@ -6,7 +6,9 @@ import 'es6-promise/auto'
 import VueMaterial from 'vue-material'
 import 'vue-material/dist/theme/default.css'
 import 'vue-material/dist/vue-material.min.css';
+import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
 Vue.use(Vuex)
 Vue.use(VueMaterial)
 

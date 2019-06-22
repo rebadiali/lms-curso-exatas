@@ -43,7 +43,10 @@ export default {
 }
 </script>
 
-<style <style lang="scss" scoped>
+<style lang="scss">
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

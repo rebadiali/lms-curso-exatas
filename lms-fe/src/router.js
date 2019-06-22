@@ -5,9 +5,11 @@ import ListCursoAluno from './components/Aluno/lista_cursos'
 import CadTheme from './components/Professor/cadastro_tema'
 import CadQuestion from './components/Professor/cadastro_questao'
 import CadAlternativas from './components/Professor/cad_alternativas'
+import AssociacaoQT from  './components/Professor/association_quest_theme'
 import RegistroUsuario from './views/registro_usuario'
 import LoginUsuario from './views/login_usuario'
 import Home from './views/Home'
+import Course from './views/Course'
 import Dashboard from './views/Dashboard.vue'
 
 Vue.use(Router)
@@ -62,6 +64,16 @@ const router =  new Router({
           path: '/cadastro-alternativas',
           name: 'cad-alternativas',
           component: CadAlternativas
+        },
+        {
+          path: '/associacao_quest_tema',
+          name: 'associacao_quest_tema',
+          component: AssociacaoQT
+        },
+        {
+          path: '/course/:id',
+          name: 'course',
+          component: Course
         },
       ]
     }
