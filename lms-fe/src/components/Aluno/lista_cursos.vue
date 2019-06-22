@@ -4,18 +4,17 @@
       <md-table md-card>
         <md-table-toolbar>
           <h1 class="md-title">Cursos</h1>
-          <md-button @click="getListCourse" class="md-fab md-mini md-primary">
-            <md-icon>add</md-icon>
-          </md-button>
         </md-table-toolbar>
         <md-table-row>
           <md-table-head>Nome</md-table-head>
-          <md-table-head md-numeric>Professor</md-table-head>
         </md-table-row>
-        <md-table-row v-for="item in data" :key="item.id">
-          <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
-          <md-table-cell md-label="Professor" md-sort-by="professor" md-numeric>{{ item.professor_id }}</md-table-cell>
-        </md-table-row>
+        <template v-for="item in data">
+          <md-table-row :key="item.id">
+            <md-table-cell md-label="Name" md-sort-by="name">
+              <router-link :to="'course/'+item.id">{{ item.name }} </router-link>
+            </md-table-cell>
+          </md-table-row>
+        </template>
       </md-table>
     </div>
 </template>
@@ -41,10 +40,17 @@
             this.response = 'Error: ' + error.response.status
         })
       }
+    },
+    mounted: function(){
+      this.getListCourse();
     }
   }
 </script>
 <style lang="scss" scoped>
+.link-course{
+  text-decoration: none;
+  color: #000000;
+}
 </style>
 
 

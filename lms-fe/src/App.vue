@@ -42,9 +42,9 @@ export default {
 }
 </script>
 
-<style <style lang="scss">
+<style lang="scss">
 
-@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;

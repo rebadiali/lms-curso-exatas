@@ -1,7 +1,7 @@
 <template>
-    <div class="d-flex">
+    <div >
         <form @submit.prevent="submitForm">
-            <div>
+            <div class="d-flex">
                 <md-list>
                     <md-subheader>Questões:</md-subheader>
                     <template v-for="item in questions">
