@@ -53,7 +53,10 @@ class ProfessorController extends Controller
             'token' => str_random(40)
         ]);
 
-        Mail::to($request->email)->send(new VerifyMail($request));
+        $mail = array_merge($request->toArray(), $verifyUser->toArray());
+
+        Mail::to($request->email)->send(new VerifyMail($mail));
+
         return $data;
     }
 
