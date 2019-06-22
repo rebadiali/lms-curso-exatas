@@ -19,7 +19,7 @@
       return {
       name: '',
       userName: window.sessionStorage.userName,
-      professor_Id: window.sessionStorage.id,
+      professor_Id: window.sessionStorage.idUser,
       response: '',
       activeClass: 'active'
       }
@@ -28,10 +28,11 @@
       submitForm: function() {
         axios.defaults.baseURL ='http://localhost:8000'
         axios.post('/api/course', {
-          professor_id: professor_Id,
+          professor_id: this.professor_Id,
           name: this.name
         }).then(response => {
           this.response = JSON.stringify(response, null, 2)
+          alert("Curso cadastrado com sucesso");
         }).catch(error => {
           this.response = 'Error: ' + error.response.status
         })
