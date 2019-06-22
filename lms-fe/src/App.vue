@@ -34,7 +34,7 @@ export default {
           this.response = 'Error: ' + error.response.status
       });
     },
-    
+
   },
   mounted: function () {
     this.getUser();

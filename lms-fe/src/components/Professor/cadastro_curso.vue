@@ -2,7 +2,7 @@
     <div>
         <form @submit.prevent="submitForm" class="defaultForm">
             <div>
-              <h1>Bem Vindo {{ userName }}</h1>
+              <h1>Professor {{ userName }}</h1>
               <label for="name">Nome do curso:</label><br>
               <input id="name" type="text" placeholder="Curso" v-model="name" required/>
             </div>
@@ -19,6 +19,7 @@
       return {
       name: '',
       userName: window.sessionStorage.userName,
+      professor_Id: window.sessionStorage.id,
       response: '',
       activeClass: 'active'
       }
@@ -27,7 +28,7 @@
       submitForm: function() {
         axios.defaults.baseURL ='http://localhost:8000'
         axios.post('/api/course', {
-          professor_id: window.sessionStorage.id,
+          professor_id: professor_Id,
           name: this.name
         }).then(response => {
           this.response = JSON.stringify(response, null, 2)

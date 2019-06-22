@@ -4,6 +4,7 @@ import CadCurso from './components/Professor/cadastro_curso'
 import ListCursoAluno from './components/Aluno/lista_cursos'
 import CadTheme from './components/Professor/cadastro_tema'
 import CadQuestion from './components/Professor/cadastro_questao'
+import CadAlternativas from './components/Professor/cad_alternativas'
 import RegistroUsuario from './views/registro_usuario'
 import LoginUsuario from './views/login_usuario'
 import Home from './views/Home'
@@ -56,6 +57,11 @@ const router =  new Router({
           path: '/cadastro-questao',
           name: 'cadastro-questao',
           component: CadQuestion
+        },
+        {
+          path: '/cadastro-alternativas',
+          name: 'cad-alternativas',
+          component: CadAlternativas
         },
       ]
     }
