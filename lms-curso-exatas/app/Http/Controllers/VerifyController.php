@@ -26,12 +26,13 @@ class VerifyController extends Controller
         if(Verify_User::all()->where('token','=',$token)->count() == 1){
             $user_id = Verify_User::all()->where('token','=',$token)->first()->user_id;
 
-            $user = User::all()->where('id','=',$user_id)->toArray();
-            dd($user);
+            $user = User::where('id','=',$user_id)->first()->update(['verified'=>1]);
+            Verify_User::where('token','=',$token)->delete();
           
+            return 'Usuario  Verificado com sucesso';
         }
 
-        return Verify_User::all()->where('token','=',$token);
+        return 'Usuario  não foi encontrado';
     }
 
     /**

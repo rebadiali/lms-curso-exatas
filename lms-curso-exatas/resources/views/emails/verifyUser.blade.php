@@ -10,7 +10,7 @@
 Your registered email-id is {{$user['email']}} , Please click on the below link to verify your email account
 Your token: {{$user['token']}}
 <br/>
-<a href="{{url('api/verify', $user['token'])}}">Verify Email</a>
+<a href="{{url('api/verify?token=')}}{{$user['token']}}" >Verify Email</a>
 </body>
 
 </html>
