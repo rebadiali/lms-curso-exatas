@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\VerifyUser;
 use App\User;
+use Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Mail\VerifyMail;
 
 class ProfessorController extends Controller
 {
@@ -42,7 +45,16 @@ class ProfessorController extends Controller
         if ($validation->fails()){
             return response()->json($validation->errors(), 422);
         }
-        return User::create($request->all());
+
+        $data = User::create($request->all());
+
+        $verifyUser = VerifyUser::create([
+            'user_id' => $data->id,
+            'token' => str_random(40)
+        ]);
+
+        Mail::to($request->email)->send(new VerifyMail($request));
+        return $data;
     }
 
     /**
