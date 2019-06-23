@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Questionnaire extends Model
 {
     protected $fillable = [
-        'professor_id','course_id',
+        'professor_id','course_id','name'
     ];
 
     public function Themes(){

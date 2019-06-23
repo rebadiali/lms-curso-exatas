@@ -130,7 +130,8 @@ class QuestionnaireController extends Controller
                         ->where('user_type',User::PROFESSOR);
                 }),
             ],
-            'course_id' => ['required']
+            'course_id' => ['required'],
+            'name' => ['required']
         ]);
     }
 }
