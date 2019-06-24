@@ -8,22 +8,19 @@ use App\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 
-class QuestionnaireController extends Controller
+class QuestionnaireByCourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Questionnaire::all();
+        $courseid = $request->course_id;
+        $result = Questionnaire::all()->where('course_id','=',$courseid);
 
-    }
-
-    public function byCourse()
-    {
-        return Questionnaire::all();
+        return $result;
 
     }
 

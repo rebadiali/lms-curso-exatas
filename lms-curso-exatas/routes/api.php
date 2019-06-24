@@ -49,6 +49,15 @@ Route::resource('professor', 'ProfessorController',
     ]
 );
 
+Route::resource('QuestionnaireCorrection', 'QuestionnaireCorrectionController',
+    [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+);
+
 Route::resource('theme', 'ThemeController',
    [
         'except' => [
@@ -75,6 +84,15 @@ Route::resource('questionnaire', 'QuestionnaireController',
         ],
     ]
 );
+
+Route::resource('questionnairebycourse', 'QuestionnaireByCourseController',
+   [
+        'except' => [
+            "create",
+            "edit"
+        ],
+    ]
+ );
 
 Route::put('question/{question}/associate', 'QuestionController@associateQuestionToTheme');
 
