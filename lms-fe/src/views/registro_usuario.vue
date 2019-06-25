@@ -70,7 +70,7 @@
             }).catch(error => {
                 this.response = 'Error: ' + error.response.status
             })
-        } 
+        }
           }
       }
     }

@@ -1,13 +1,15 @@
 <template>
-    <div >
+     <div >
         <form @submit.prevent="submitForm">
             <div>
-                <md-header>Selecione um tema para seu questionario.</md-header>
+                <div>
+                    <p class="h4">Selecione um tema para seu questionario.</p>
+                </div>
                 <md-list>
                     <md-subheader>Temas:</md-subheader>
                     <template v-for="item in themes">
                         <md-list-item :key="item.id">
-                            <md-checkbox v-model="themeId" :value="item.id" />
+                            <input class="input-number" v-model="item.number" type="number">
                             <span class="md-list-item-text">{{ item.theme }}</span>
                         </md-list-item>
                     </template>
@@ -31,16 +33,28 @@
         questionnaire: this.$route.params,
         themes: '',
         themeId: '',
-        sucess: false
+        sucess: false,
+        CursoInfo: this.$route.params,
       }
     },
     methods: {
-      submitForm() {
-          axios.defaults.baseURL ='http://localhost:8000'
-          axios.post('/api/alternative', {
-              questionnaire_id: this.questionnaire,
-              theme_id: this.themeId,
-              quantity: this.quantity
+      submitForm: function() {
+          axios.defaults.baseURL ='http://localhost:8000';
+          let number_questions = [];
+          this.themes.forEach(function(item,index) {
+                let obj = {
+                  theme_id: item.id,
+                  quantity: Number(item.number)
+                };
+                number_questions[index] = obj;
+          })
+          console.log('esta porra : '+ JSON.stringify(number_questions));
+
+          axios.post('/api/questionnaire', {
+            name: "Questionario teste",
+            professor_id: this.CursoInfo.professor,
+            course_id: this.CursoInfo.id,
+            number_of_questions: number_questions
           }).then(response => {
               this.response = JSON.stringify(response, null, 2)
           }).catch(error => {
@@ -51,10 +65,15 @@
       getThemes: function (){
         axios.defaults.baseURL ='http://localhost:8000'
         axios.get('/api/theme').then(response => {
-            this.response = JSON.parse(JSON.stringify(response))
+            this.response = JSON.parse(JSON.stringify(response));
             this.themes = response.data;
+            this.themes.forEach(function(item) {
+                item.number = 0;
+            });
+            console.log(this.themes);
         }).catch(error => {
-            this.response = 'Error: ' + error.response.status
+            this.response = 'Error: ' + error.response
+            console.log('deu merda');
         })
       }
     },
@@ -64,7 +83,10 @@
   }
 </script>
 <style lang="scss" scoped>
-
+    .input-number{
+        width: 40px;
+        margin-right: 15px;
+    }
 </style>
 
 
