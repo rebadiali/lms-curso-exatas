@@ -40,6 +40,7 @@ const router =  new Router({
       path: '/Dashboard',
       name: 'Dashboard',
       component: Dashboard,
+      redirect: '/lista-de-cursos',
       children: [
         {
           path: '/cadastro-curso',

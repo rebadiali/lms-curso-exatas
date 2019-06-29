@@ -1,7 +1,7 @@
 <template>
     <div id="app">
         <form @submit.prevent="submitForm">
-            <div class="d-flex">
+            <div class="quest-wrapper">
                 <md-checkbox v-for="item in data" :key="item.id" v-model="questionId" :value="item.id">{{ item.question }}</md-checkbox>
             </div>
             <div class="marg-20">
@@ -11,7 +11,6 @@
                 <md-checkbox v-model="correct" value="0">Não</md-checkbox>
             </div>
             <button class="active" type="submit">Registrar</button>
-            <p>{{ questionId }} , {{ alternatives }} ,{{correct}} </p>
         </form>
          <md-dialog-alert
             :md-active.sync="sucess"
@@ -91,8 +90,10 @@ form {
   }
 }
 
-.d-flex{
-  justify-content: space-between;
+.quest-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 button {

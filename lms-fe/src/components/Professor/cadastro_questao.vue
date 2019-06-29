@@ -2,14 +2,13 @@
     <div id="app">
         <form @submit.prevent="submitForm">
             <div class="d-flex">
-                <md-checkbox v-for="item in data" :key="item.id" v-model="themeId" :value="item.id">{{ item.name }}</md-checkbox>
+                <md-checkbox v-for="item in data" :key="item.id" v-model="themeId" :value="item.id">{{ item.theme }}</md-checkbox>
             </div>
             <div class="marg-20">
             <label for="question">Questão:</label><br>
             <input id="question" type="text" v-model="question" required/>
             </div>
             <button :class="[question ? activeClass : '']" type="submit">Registrar</button>
-            <p>{{ themeId }}</p>
         </form>
          <md-dialog-alert
             :md-active.sync="sucess"

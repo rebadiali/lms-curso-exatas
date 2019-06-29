@@ -1,51 +1,26 @@
 <template>
   <div>
-    <md-app>
-      <md-app-toolbar class="md-primary" md-elevation="0">
-        <md-button class="md-icon-button" @click="toggleMenu" v-if="!menuVisible">
-          <md-icon>menu</md-icon>
-        </md-button>
-        <span class="md-title">LMS</span>
-      </md-app-toolbar>
+    <div>
+      <b-navbar type="dark" variant="primary">
+        <b-navbar-nav>
+          <b-nav-item to="/">Home</b-nav-item>
+          <b-nav-item href="/cadastro-tema">Tema</b-nav-item>
 
-      <md-app-drawer :md-active.sync="menuVisible" md-persistent="mini">
-        <md-toolbar class="md-transparent" md-elevation="0">
-          <span>Navigation</span>
+          <!-- Navbar dropdowns -->
+          <b-nav-item-dropdown text="Cursos" right>
+            <b-dropdown-item to="/lista-de-cursos">Cursos</b-dropdown-item>
+            <b-dropdown-item to="/cadastro-curso">Cadastro de Curso</b-dropdown-item>
+          </b-nav-item-dropdown>
 
-          <div class="md-toolbar-section-end">
-            <md-button class="md-icon-button md-dense" @click="toggleMenu">
-              <md-icon>keyboard_arrow_left</md-icon>
-            </md-button>
-          </div>
-        </md-toolbar>
-
-        <md-list>
-          <md-list-item>
-            <md-icon>move_to_inbox</md-icon>
-            <span class="md-list-item-text">Inbox</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>send</md-icon>
-            <span class="md-list-item-text">Sent Mail</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>delete</md-icon>
-            <span class="md-list-item-text">Trash</span>
-          </md-list-item>
-
-          <md-list-item>
-            <md-icon>error</md-icon>
-            <span class="md-list-item-text">Spam</span>
-          </md-list-item>
-        </md-list>
-      </md-app-drawer>
-  
-      <md-app-content>
-        <router-view></router-view>
-      </md-app-content>
-    </md-app>
+          <b-nav-item-dropdown text="Questões" right>
+            <b-dropdown-item to="/cadastro-questao">Cadastro de Questões</b-dropdown-item>
+            <b-dropdown-item to="/cadastro-alternativas">Alternativas</b-dropdown-item>
+            <b-dropdown-item to="/associacao_quest_tema">Associar Tema e Questão</b-dropdown-item>
+          </b-nav-item-dropdown>
+        </b-navbar-nav>
+      </b-navbar>
+    </div>
+      <router-view></router-view>
   </div>
 </template>
 
@@ -54,13 +29,9 @@
     name: 'dashboard',
     data(){
       return {
-        menuVisible: false
       }
     },
     methods: {
-      toggleMenu () {
-        this.menuVisible = !this.menuVisible
-      }
     }
   }
 </script>

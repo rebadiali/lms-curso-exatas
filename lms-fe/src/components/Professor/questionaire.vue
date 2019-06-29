@@ -31,6 +31,7 @@
     data() {
       return {
         questionnaire: this.$route.params,
+        nameQT: 'Questionario Teste GG',
         themes: '',
         themeId: '',
         sucess: false,
@@ -51,7 +52,7 @@
           console.log('esta porra : '+ JSON.stringify(number_questions));
 
           axios.post('/api/questionnaire', {
-            name: "Questionario teste",
+            name: this.nameQT,
             professor_id: this.CursoInfo.professor,
             course_id: this.CursoInfo.id,
             number_of_questions: number_questions
@@ -73,7 +74,6 @@
             console.log(this.themes);
         }).catch(error => {
             this.response = 'Error: ' + error.response
-            console.log('deu merda');
         })
       }
     },
