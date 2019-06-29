@@ -9,7 +9,6 @@ import AssociacaoQT from  './components/Professor/association_quest_theme'
 import QuestionarioC from './components/Professor/questionaire'
 import RegistroUsuario from './views/registro_usuario'
 import LoginUsuario from './views/login_usuario'
-import Home from './views/Home'
 import Course from './views/Course'
 import Dashboard from './views/Dashboard.vue'
 
@@ -20,18 +19,12 @@ const router =  new Router({
   routes: [
     //-- area de usuario comum
     {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-
-    {
       path: '/registro-usuario',
       name: 'Registro-usuario',
       component: RegistroUsuario
     },
     {
-      path: '/login-usuario',
+      path: '/',
       name: 'Login-usuario',
       component: LoginUsuario
     },
