@@ -49,7 +49,7 @@ Route::resource('professor', 'ProfessorController',
     ]
 );
 
-Route::resource('QuestionnaireCorrection', 'QuestionnaireCorrectionController',
+Route::resource('grading', 'GradingController',
     [
         'except' => [
             "create",
