@@ -1,18 +1,32 @@
 <template>
   <div class="login-usuario">
-    <h2>Login de usuário</h2>
     <form @submit.prevent="submitForm">
-      <md-field md-clearable>
-        <label>Email</label>
-        <md-input id="email" type="email" required v-model="email"></md-input>
-      </md-field>
-
-      <md-field>
-        <label>Senha</label>
-        <md-input id="password" type="password" maxlength="25" minlength="6" required v-model="password"></md-input>
-      </md-field>
-
-      <md-button class="md-raised md-primary" type="submit">Enviar</md-button>
+      <div class="simple-login-container">
+        <h2>Login</h2>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input id="email" type="email" required v-model="email" class="form-control" placeholder="Email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="password" placeholder="Senha" class="form-control" id="password" maxlength="25" minlength="6" required v-model="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <button type="submit" class="btn btn-block btn-login col-md-12">Logar</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+              <span class="cadastro">
+                Ainda não possui conta ?
+                <router-link to="/registro-usuario" class="link-cadastro">Cadastrar-se</router-link>
+              </span>
+            </div>
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -54,19 +68,38 @@
     }
 </script>
 <style lang="scss" scoped>
-  .md-field:last-child {
-    margin-bottom: 40px;
+  .login-usuario{
+    background-color:#8cc4ff;
+    font-size:14px;
+    color:#fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .login-usuario {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 10px 15px;
-    box-shadow: 2px 2px 4px rgba(75, 75, 75, 0.5);
+  .simple-login-container{
+      width:300px;
+      max-width:100%;
+      margin: auto;
+  }
+  .simple-login-container h2{
+      text-align:center;
+      font-size:20px;
   }
 
-  @media(max-width: 992px){
-    .login-usuario {
-      max-width: 90%;
+  .simple-login-container .btn-login{
+      background-color:#FF5964;
+      color:#fff;
+  }
+  .cadastro{
+    color:#fff;
+    .link-cadastro{
+      color: #FF5964;
+      text-decoration: none;
+      cursor: pointer;
+      &:hover{
+        color: rgb(245, 2, 18);
+      }
     }
   }
 </style>

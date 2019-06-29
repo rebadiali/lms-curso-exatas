@@ -1,23 +1,29 @@
 <template>
   <div class="registro-usuario">
-    <h2>Registro de usuário</h2>
-    <form @submit.prevent="submitForm">
-      <md-field md-clearable>
-        <label>Nome</label>
-        <md-input id="name" type="text" required v-model="name"></md-input>
-      </md-field>
-
-      <md-field md-clearable>
-        <label>Email</label>
-        <md-input id="email" type="email" required v-model="email"></md-input>
-      </md-field>
-
-      <md-field>
-        <label>Senha</label>
-        <md-input id="password" type="password" maxlength="25" minlength="6" required v-model="password"></md-input>
-      </md-field>
-
-      <md-button class="md-raised md-primary" type="submit">Enviar</md-button>
+     <form @submit.prevent="submitForm">
+      <div class="simple-login-container">
+        <h2>Cadastro</h2>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input id="email" type="text" required v-model="name" class="form-control" placeholder="Nome">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input id="email" type="email" required v-model="email" class="form-control" placeholder="Email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <input type="password" placeholder="Senha" class="form-control" id="password" maxlength="25" minlength="6" required v-model="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <button type="submit" class="btn btn-block btn-login col-md-12">Registrar</button>
+            </div>
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -76,20 +82,31 @@
     }
 </script>
 <style lang="scss" scoped>
-  .md-field:last-child {
-    margin-bottom: 40px;
+  .registro-usuario{
+    background-color:#8cc4ff;
+    font-size:14px;
+    color:#fff;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
-  .registro-usuario {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 10px 15px;
-    box-shadow: 2px 2px 4px rgba(75, 75, 75, 0.5);
+  .simple-login-container{
+      width:300px;
+      max-width:100%;
+      margin: auto;
+  }
+  .simple-login-container h2{
+      text-align:center;
+      font-size:20px;
   }
 
-  @media(max-width: 992px){
-    .registro-usuario {
-      max-width: 90%;
-    }
+  .simple-login-container .btn-login{
+      background-color:#FF5964;
+      color:#fff;
+  }
+  a{
+      color:#fff;
   }
 </style>
 
