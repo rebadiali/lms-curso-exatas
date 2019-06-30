@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <form @submit.prevent="submitForm">
+        <form @submit.prevent="submitForm" class="defaultForm">
             <div class="quest-wrapper">
                 <md-checkbox v-for="item in data" :key="item.id" v-model="questionId" :value="item.id">{{ item.question }}</md-checkbox>
             </div>
@@ -66,56 +66,6 @@ $primary: #5968d7;
   display: flex;
   justify-content: center;
   font-family: 'Work Sans', sans-serif;
-}
-
-form {
-  width: 50%;
-  padding: 10px 40px;
-  label{
-    text-transform: uppercase;
-    font-size: 13px;
-    letter-spacing: 0.03em;
-    font-weight: bold;
-  }
-  input, textarea {
-    border: 1px solid #ccc;
-    color: #333;
-    width: calc(100% - 30px);
-  }
-  input, textarea, button {
-    border-radius: 4px;
-    padding: 8px 15px;
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 300;
-  }
-}
-
-.quest-wrapper{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
-
-button {
-  color: white;
-  border: none;
-  width: 100%;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  background: #ccc;
-  cursor: pointer;
-  box-shadow: 0px 2px 3px rgba(0, 0, 0, 0.3);
-  transition: 0.25s all ease;
-  &:hover {
-    transform: translateY(2px);
-  }
-}
-.marg-20{
-  margin: 20px 0;
-}
-.active {
-  background: $primary;
 }
 
 pre-content {

@@ -53,7 +53,7 @@
                 this.token = response.data.token
                 this.response = response
                 sessionStorage.tokenUser = response.data.token;
-                this.$router.push('/Dashboard');
+                window.location.href = '/Dashboard';
             }).catch(error => {
                 this.response = 'Error: ' + error.response
                 alert('Senha incorreta');
