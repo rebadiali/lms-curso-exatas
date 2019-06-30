@@ -26,15 +26,11 @@ export default {
     getUser: function() {
       axios.defaults.baseURL ='http://localhost:8000';
       let token;
-      //let $this = this;
-      token = window.sessionStorage.tokenUser;
-      console.log(token);
       if(token){
         axios.get('/api/users', {headers: { Authorization: `Bearer ${token}` }}).then(response => {
           window.sessionStorage.idUser = response.data.id;
           window.sessionStorage.typeUser = response.data.user_type;
           window.sessionStorage.userName = response.data.name;
-          console.log(this.response);
         }).catch(error => {
             this.response = 'Error: ' + error.response
             console.log(this.response.status);

@@ -72,7 +72,7 @@
                 this.response = response
                 alert('Cadastrado com sucesso');
                 this.response = response;
-                this.$router.push('/login-usuario');
+                this.$router.push('/');
             }).catch(error => {
                 this.response = 'Error: ' + error.response.status
             })

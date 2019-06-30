@@ -1,7 +1,7 @@
 <template>
     <div>
         <div>
-            <p class="h1">{{ courseInfo.name }}</p>
+            <p class="h1 titlePage">{{ courseInfo.name }}</p>
         </div>
         <div>
             <p>Professor: {{ professorInfo.name }} </p>
