@@ -2,14 +2,19 @@
      <div >
         <form @submit.prevent="submitForm">
             <div>
-                <div>
-                    <p class="h4">Selecione um tema para seu questionario.</p>
+                <div class="mt-md-3">
+                    <p class="h4">Crie seu questionario.</p>
+                </div>
+                <div class="col-md-3 form-group">
+                  <input type="text" required v-model="nameQT" class="form-control" placeholder="Nome do Questionario:">
                 </div>
                 <md-list>
                     <md-subheader>Temas:</md-subheader>
                     <template v-for="item in themes">
-                        <md-list-item :key="item.id">
-                            <input class="input-number" v-model="item.number" type="number">
+                        <md-list-item :key="item.id" class="col-md-6">
+                          <div class="col-md-2">
+                            <input class="form-control" v-model="item.number" type="number">
+                          </div>
                             <span class="md-list-item-text">{{ item.theme }}</span>
                         </md-list-item>
                     </template>
@@ -31,7 +36,7 @@
     data() {
       return {
         questionnaire: this.$route.params,
-        nameQT: 'Questionario Teste GG',
+        nameQT: '',
         themes: '',
         themeId: '',
         sucess: false,
@@ -49,7 +54,6 @@
                 };
                 number_questions[index] = obj;
           })
-          console.log('esta porra : '+ JSON.stringify(number_questions));
 
           axios.post('/api/questionnaire', {
             name: this.nameQT,
