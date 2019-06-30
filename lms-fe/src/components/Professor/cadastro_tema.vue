@@ -2,11 +2,11 @@
     <div id="app">
         <form @submit.prevent="submitForm" class="defaultForm">
             <div class="d-flex">
-                <md-checkbox v-for="item in data" :key="item.id" v-model="courseId" :value="item.id">{{ item.name }}</md-checkbox>
+                <md-checkbox v-for="item in data" :key="item.id" v-model="courseId" :value="item.id" class="md-primary">{{ item.name }}</md-checkbox>
             </div>
             <div>
               <label for="themename">Tema:</label><br>
-              <input id="themename" type="text" v-model="themename" required/>
+              <input id="themename" type="text" placeholder="Digite o tema" v-model="themename" required/>
             </div>
             <button :class="[themename ? activeClass : '']" type="submit">Registrar</button>
         </form>

@@ -2,13 +2,13 @@
     <div id="app">
         <form @submit.prevent="submitForm" class="defaultForm">
             <div class="quest-wrapper">
-                <md-checkbox v-for="item in data" :key="item.id" v-model="questionId" :value="item.id">{{ item.question }}</md-checkbox>
+                <md-checkbox class="md-primary" v-for="item in data" :key="item.id" v-model="questionId" :value="item.id">{{ item.question }}</md-checkbox>
             </div>
             <div class="marg-20">
                 <label for="question">Cadastre as alternativas para a questão acima:</label><br>
                 <input id="question" type="text" v-model="alternatives" required/>
-                <md-checkbox v-model="correct" value="1">Sim</md-checkbox>
-                <md-checkbox v-model="correct" value="0">Não</md-checkbox>
+                <md-checkbox v-model="correct" value="1" class="md-primary">Sim</md-checkbox>
+                <md-checkbox v-model="correct" value="0" class="md-primary">Não</md-checkbox>
             </div>
             <button class="active" type="submit">Registrar</button>
         </form>

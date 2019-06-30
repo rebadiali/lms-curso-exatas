@@ -6,7 +6,7 @@
                     <md-subheader>Questões:</md-subheader>
                     <template v-for="item in questions">
                         <md-list-item :key="item.id">
-                            <md-checkbox v-model="questionId" :value="item.id" />
+                            <md-checkbox v-model="questionId" :value="item.id" class="md-primary" />
                             <span class="md-list-item-text">{{ item.question }}</span>
                         </md-list-item>
                     </template>

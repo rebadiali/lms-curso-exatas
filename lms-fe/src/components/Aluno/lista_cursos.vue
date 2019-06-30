@@ -9,7 +9,7 @@
           <md-table-head>Nome</md-table-head>
         </md-table-row>
         <template v-for="item in data">
-          <md-table-row :key="item.id">
+          <md-table-row :key="item.id" class="tableRow">
             <md-table-cell md-label="Name" md-sort-by="name">
               <router-link :to="'course/'+item.id">{{ item.name }} </router-link>
             </md-table-cell>
@@ -50,6 +50,12 @@
 .link-course{
   text-decoration: none;
   color: #000000;
+}
+.tableRow:nth-child(even) {
+  background: #448aff;
+}
+.tableRow:nth-child(even) a {
+  color: #fff;
 }
 </style>
 

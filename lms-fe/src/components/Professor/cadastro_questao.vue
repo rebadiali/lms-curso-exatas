@@ -2,7 +2,7 @@
     <div id="app">
         <form @submit.prevent="submitForm" class="defaultForm">
             <div class="d-flex">
-                <md-checkbox v-for="item in data" :key="item.id" v-model="themeId" :value="item.id">{{ item.theme }}</md-checkbox>
+                <md-checkbox class="md-primary" v-for="item in data" :key="item.id" v-model="themeId" :value="item.id">{{ item.theme }}</md-checkbox>
             </div>
             <div class="marg-20">
             <label for="question">Questão:</label><br>
