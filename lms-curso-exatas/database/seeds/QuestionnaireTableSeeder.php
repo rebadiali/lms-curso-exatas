@@ -14,10 +14,12 @@ class QuestionnaireTableSeeder extends Seeder
         DB::table("questionnaires")->insert(
             [
                 [
+                    'name' => 'Questionario Seed Teste',
                     'professor_id' => 2,
                     'course_id' => 1,
                 ],
                 [
+                    'name' => 'Questionario Seed Teste',
                     'professor_id' => 2,
                     'course_id' => 2,
                 ],

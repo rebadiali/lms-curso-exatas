@@ -7,18 +7,21 @@
             <p>Professor: {{ professorInfo.name }} </p>
         </div>
         <div>
-           <md-list>
+            <div class="d-flex flex-column align-items-center col-md-12">
             <md-subheader>Questionarios do Curso:</md-subheader>
-            <template v-for="item in questionarios">
-                <md-list-item :key="item.id">
-                    <md-checkbox v-model="questionariosId" :value="item.id" />
-                    <span class="md-list-item-text">{{ item.questionarios }}</span>
-                </md-list-item>
-            </template>
-            </md-list>
+                <ul class="list-group col-md-5">
+                    <template v-for="item in questionarios">
+                        <li class="list-group-item" :key="item.id">
+                            <span class="md-list-item-text">
+                            <router-link :to="'/questionario/' + item.id"> {{ item.name }} </router-link>
+                            </span>
+                        </li>
+                    </template>
+                </ul>
+            </div>
         </div>
-        <div v-show="type_user != 'professor'">
-            <b-button  :to="'/questionario/' + courseID.id + '/' + professorInfo.id" variant="primary" class="link-criar">Criar Questionario</b-button>
+        <div v-show="type_user == 'professor'" class="mt-md-3">
+            <b-button  :to="'/criar_questionario/' + courseID.id + '/' + professorInfo.id" variant="primary" class="link-criar">Criar Questionario</b-button>
         </div>
     </div>
 </template>
@@ -27,7 +30,7 @@
 import axios from 'axios';
 
 export default {
-    name: 'cad-alternativas',
+    name: 'course',
     data() {
         return{
             courseID: this.$route.params,
@@ -35,7 +38,7 @@ export default {
             questionarios: '',
             professorInfo: '',
             response: '',
-            type_user: window.sessionStorage.typeUser,
+            type_user: window.sessionStorage.typeUser
         }
     },
     methods: {
@@ -45,11 +48,12 @@ export default {
                 this.response = JSON.parse(JSON.stringify(response))
                 this.courseInfo = response.data;
                 this.getProfessor(this.courseInfo.professor_id);
+                this.getQuestionarios(this.courseInfo.id);
             }).catch(error => {
                 this.response = 'Error: ' + error.response.status
             })
         },
-        getProfessor: function(id){
+        getProfessor(id){
             axios.defaults.baseURL ='http://localhost:8000'
             axios.get('/api/professor/'+ id).then(response => {
                 this.response = JSON.stringify(response)
@@ -58,17 +62,17 @@ export default {
                 this.response = 'Error: ' + error.response.status
             })
         },
-        getQuestionarios: function(){
+        getQuestionarios(id){
             axios.defaults.baseURL ='http://localhost:8000'
-            axios.get('/api/questionnaire').then(response => {
-                this.response = JSON.parse(JSON.stringify(response))
-                this.questionarios = response.data;
+            axios.get('/api/questionnairebycourse?course_id=' + id).then(response => {
+                this.questionarios =response.data;
+                console.log('Questionarios: ' + this.questionarios);
             }).catch(error => {
-                this.response = 'Error: ' + error.response.status
+                this.response = 'Error: ' + error.response
             })
         }
     },
-    mounted: function (){
+    mounted(){
         this.getCourse();
     }
 }

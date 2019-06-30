@@ -32,7 +32,7 @@
   import axios from 'axios';
 
   export default {
-    name: 'cad-alternativas',
+    name: 'criar_questionario',
     data() {
       return {
         questionnaire: this.$route.params,
@@ -61,11 +61,12 @@
             course_id: this.CursoInfo.id,
             number_of_questions: number_questions
           }).then(response => {
-              this.response = JSON.stringify(response, null, 2)
+              this.response = JSON.parse(JSON.stringify(response));
+              this.sucess = true;
+              this.$router.push('/questionario/' + this.response.data.id +'/'+ this.CursoInfo.professor);
           }).catch(error => {
-              this.response = 'Error: ' + error.response.status
+              this.response = 'Error: ' + error.response
           })
-          this.sucess = true;
       },
       getThemes: function (){
         axios.defaults.baseURL ='http://localhost:8000'
@@ -75,7 +76,6 @@
             this.themes.forEach(function(item) {
                 item.number = 0;
             });
-            console.log(this.themes);
         }).catch(error => {
             this.response = 'Error: ' + error.response
         })

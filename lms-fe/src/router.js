@@ -6,7 +6,8 @@ import CadTheme from './components/Professor/cadastro_tema'
 import CadQuestion from './components/Professor/cadastro_questao'
 import CadAlternativas from './components/Professor/cad_alternativas'
 import AssociacaoQT from  './components/Professor/association_quest_theme'
-import QuestionarioC from './components/Professor/questionaire'
+import QuestionarioC from './components/Professor/criar_questionaire'
+import Questionario from './views/Questionario'
 import RegistroUsuario from './views/registro_usuario'
 import LoginUsuario from './views/login_usuario'
 import Course from './views/Course'
@@ -71,9 +72,14 @@ const router =  new Router({
           component: Course
         },
         {
-          path: '/questionario/:id/:professor',
-          name: 'questionario',
+          path: '/criar_questionario/:id/:professor',
+          name: 'criar_questionario',
           component: QuestionarioC
+        },
+        {
+          path: '/questionario/:id',
+          name: 'questionario',
+          component: Questionario
         }
 
       ]
