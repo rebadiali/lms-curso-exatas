@@ -4,15 +4,15 @@
       <b-navbar type="dark" variant="primary">
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item href="/cadastro-tema">Tema</b-nav-item>
+          <b-nav-item  v-show="type_user == 'professor'"  href="/cadastro-tema">Tema</b-nav-item>
 
           <!-- Navbar dropdowns -->
           <b-nav-item-dropdown text="Cursos">
             <b-dropdown-item to="/lista-de-cursos">Cursos</b-dropdown-item>
-            <b-dropdown-item to="/cadastro-curso">Cadastro de Curso</b-dropdown-item>
+            <b-dropdown-item  v-show="type_user == 'professor'"  to="/cadastro-curso">Cadastro de Curso</b-dropdown-item>
           </b-nav-item-dropdown>
 
-          <b-nav-item-dropdown text="Questões">
+          <b-nav-item-dropdown v-show="type_user == 'professor'" text="Questões">
             <b-dropdown-item to="/cadastro-questao">Cadastro de Questões</b-dropdown-item>
             <b-dropdown-item to="/cadastro-alternativas">Alternativas</b-dropdown-item>
             <b-dropdown-item to="/associacao_quest_tema">Associar Tema e Questão</b-dropdown-item>
@@ -32,6 +32,7 @@
     name: 'dashboard',
     data(){
       return {
+        type_user: window.sessionStorage.getItem('typeUser')
       }
     },
     methods: {

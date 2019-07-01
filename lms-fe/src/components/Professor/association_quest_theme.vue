@@ -26,8 +26,8 @@
         </form>
          <md-dialog-alert
             :md-active.sync="sucess"
-            md-title="alternativa Criada !"
-            md-content="<strong>Sua alternativa foi criada com sucesso !</strong>" />
+            md-title="Questão associada !"
+            md-content="<strong> Sua questão foi associada ao tema com sucesso !</strong>" />
     </div>
 </template>
 <script>
@@ -47,10 +47,8 @@
     methods: {
       submitForm() {
           axios.defaults.baseURL ='http://localhost:8000'
-          axios.post('/api/alternative', {
-              question_id: this.questionId,
-              alternative: this.alternatives,
-              is_correct: this.correct
+          axios.put('/api/question/'  + this.questionId + '/associate', {
+              themeIds: this.themeId,
           }).then(response => {
               this.response = JSON.stringify(response, null, 2)
           }).catch(error => {
