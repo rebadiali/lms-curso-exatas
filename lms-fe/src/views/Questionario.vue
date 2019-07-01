@@ -1,31 +1,38 @@
 <template>
     <div>
         <div class="col-md-12 mt-md-3 justify-content-start">
-            <div class="col-md-4 text-left">
-                <h2>{{ questionarios.name }}</h2>
-                <h6>Professor: {{professorInfo.name}}</h6>
-                <h6>Curso: {{ courseInfo.name }} </h6>
-            </div>
-            <div class="col-md-4 mt-md-3 text-left">
-                <template v-for="(theme, index) in questionarios.themes" >
-                    <div :key="theme.id">
-                        {{ adicionaObjeto(index) }}
-                        <template v-for="questions in theme.questions" >
-                            <div  :key="questions.question">
-                                <p>{{ questions.question }}</p>
-                                {{ getQuestion(index,questions.id) }}
-                            </div>
-                            <template v-for="alternatives in questions.alternatives">
-                                <div :key="alternatives.id">
-                                    <input  type="radio" class="md-primary" v-model="alternative_id[index]" :value="alternatives.id"/>
-                                        {{ alternatives.alternative }}
-                                     {{ getAlternative(index) }}
+            <form @submit.prevent="setAnswer">
+                <div class="col-md-4 text-left">
+                    <h2>{{ questionarios.name }}</h2>
+                    <h6>Professor: {{professorInfo.name}}</h6>
+                    <h6>Curso: {{ courseInfo.name }} </h6>
+                </div>
+                <div class="col-md-4 mt-md-3 text-left">
+                    <template v-for="(theme, index) in questionarios.themes" >
+                        <div :key="theme.id">
+                            {{ adicionaObjeto(index) }}
+                            <template v-for="questions in theme.questions" >
+                                <div  :key="questions.question">
+                                    <p>{{ questions.question }}</p>
+                                    {{ getQuestion(index,questions.id) }}
                                 </div>
+                                <template v-for="alternatives in questions.alternatives">
+                                    <div :key="alternatives.id">
+                                        <input  type="radio" class="md-primary" v-model="alternative_id[index]" :value="alternatives.id"/>
+                                            {{ alternatives.alternative }}
+                                        {{ getAlternative(index) }}
+                                    </div>
+                                </template>
                             </template>
-                        </template>
+                        </div>
+                    </template>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 form-group justify-content-center d-flex">
+                        <button type="submit" class="btn btn-block btn-login col-md-3">Registrar</button>
                     </div>
-                </template>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </template>
@@ -93,6 +100,15 @@ export default {
             this.question_id[index] = id;
             this.arrayRespostas[index].question_id = this.question_id[index];
             return;
+        },
+        setAnswer: function(){
+            axios.defaults.baseURL ='http://localhost:8000'
+            axios.post('/api/answer', this.arrayRespostas).then(response => {
+                this.response = JSON.stringify(response, null, 2)
+                this.$router.push('/result/' + this.questionnaire.id);
+            }).catch(error => {
+                this.response = 'Error: ' + error.response.status
+            })
         }
     },
     mounted(){
@@ -106,5 +122,9 @@ export default {
     .link-criar{
         text-decoration: none !important;
         color: #ffffff !important;
+    }
+    .btn-login{
+        background-color:#FF5964;
+        color:#fff;
     }
 </style>

@@ -12,6 +12,7 @@ import RegistroUsuario from './views/registro_usuario'
 import LoginUsuario from './views/login_usuario'
 import Course from './views/Course'
 import Dashboard from './views/Dashboard.vue'
+import ResultQuestionario from './views/ResultQuestionario'
 
 Vue.use(Router)
 
@@ -80,6 +81,11 @@ const router =  new Router({
           path: '/questionario/:id',
           name: 'questionario',
           component: Questionario
+        },
+        {
+          path: '/result/:id',
+          name: 'ResultQuestionario',
+          component: ResultQuestionario
         }
 
       ]
