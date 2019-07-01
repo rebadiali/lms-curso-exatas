@@ -24,7 +24,7 @@
     data() {
       return {
         themename: '',
-        courseId: [],
+        courseId: '',
         response: '',
         activeClass: 'active',
         data: '',
@@ -35,7 +35,7 @@
       submitForm() {
         axios.defaults.baseURL ='http://localhost:8000'
         axios.post('/api/theme', {
-            name: this.themename,
+            theme: this.themename,
             course_id: this.courseId
         }).then(response => {
             this.response = JSON.stringify(response, null, 2)
