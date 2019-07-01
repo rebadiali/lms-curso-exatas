@@ -35,7 +35,7 @@
       submitForm() {
           axios.defaults.baseURL ='http://localhost:8000'
           axios.post('/api/question', {
-              pergunta: this.question,
+              question: this.question,
               tema_id: this.themeId
           }).then(response => {
               this.response = JSON.stringify(response, null, 2)
