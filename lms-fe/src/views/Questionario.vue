@@ -13,18 +13,18 @@
                         <template v-for="questions in theme.questions" >
                             <div  :key="questions.question">
                                 <p>{{ questions.question }}</p>
+                                {{ getQuestion(index,questions.id) }}
                             </div>
                             <template v-for="alternatives in questions.alternatives">
                                 <div :key="alternatives.id">
-                                    <input  type="radio" class="md-primary" v-model="arrayRespostas[index].alternative_id" :value="alternatives.id">
+                                    <input  type="radio" class="md-primary" v-model="alternative_id[index]" :value="alternatives.id"/>
                                         {{ alternatives.alternative }}
-                                     {{ arrayRespostas[index].alternative_id }}
+                                     {{ getAlternative(index) }}
                                 </div>
                             </template>
                         </template>
                     </div>
                 </template>
-                {{ arrayRespostas[0] }}
             </div>
         </div>
     </div>
@@ -45,7 +45,9 @@ export default {
             professorInfo: '',
             questionarioId: '',
             arrayRespostas: [],
-            variavelTeste: {}
+            variavelTeste: {},
+            alternative_id: [],
+            question_id: []
         }
     },
     methods: {
@@ -82,6 +84,15 @@ export default {
                 "student_id": this.idUser
             };
             return ;
+        },
+        getAlternative: function(index){
+            this.arrayRespostas[index].alternative_id = this.alternative_id[index];
+            return;
+        },
+        getQuestion: function(index,id){
+            this.question_id[index] = id;
+            this.arrayRespostas[index].question_id = this.question_id[index];
+            return;
         }
     },
     mounted(){
